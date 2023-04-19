@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect, useState} from "react";
+import {api} from "./utils/api";
+
+import {Header} from "./components/Header/header";
+import {Cardlist} from "./components/CardList/cardlist";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [cards, setCards] = useState([]);
+    const [search, setSearch] = useState(undefined);
+
+    useEffect(() => {
+        if (search === undefined) return;
+        api.searchProduct(search)
+            .then((data) => setCards(data))
+    }, [search])
+
+   useEffect(() => {
+       api.getProductList()
+           .then((data) => setCards(data))
+   }, [])
+
+    return (
+        <div className='App'>
+            <Header setSearch={setSearch} />
+            <main className='container'>
+                <Cardlist cards={cards} />
+            </main>
+        </div>
+    )
 }
 
 export default App;
