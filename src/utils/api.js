@@ -26,7 +26,7 @@ const config = {
     baseURL: 'https://api.react-learning.ru',
     headers: {
         "Content-Type": "application/json",
-        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDNlZDQ2NDMyOTFkNzkwYjNmMzRkZjQiLCJncm91cCI6Imdyb3VwLTEyIiwiaWF0IjoxNjgxOTE5NzMxLCJleHAiOjE3MTM0NTU3MzF9.2xuBfAgAuy9RgQ9_cUS-Lvyg0DJeJkd8w61S0UjxSwQ'
+        authorization: 'Bearer <token>'
     }
 }
 
