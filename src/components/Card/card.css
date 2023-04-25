@@ -99,6 +99,11 @@
     display: flex;
 }
 
+.card__favorite-active > svg {
+    fill: red;
+    stroke: red;
+}
+
 .card__cart {
     margin-top: auto;
 }
@@ -146,7 +151,8 @@
     color: #FFFFFF;
 }
 svg {
-    fill: red;
+    fill: transparent;
+    stroke: black;
 }
 .card__liked > svg {
     fill: red;

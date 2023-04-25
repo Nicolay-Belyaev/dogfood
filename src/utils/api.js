@@ -1,3 +1,5 @@
+import {config} from "./confing";
+
 const jsonificator = (data) => {
     return data.json()
 }
@@ -5,7 +7,7 @@ const jsonificator = (data) => {
 class Api {
     constructor(data) {
         this.baseURL = data.baseURL;
-        this.headers = data.header;
+        this.headers = data.headers;
     }
 
     getProductList() {
@@ -14,20 +16,25 @@ class Api {
             headers: this.headers
         }).then(jsonificator)
     }
-
     searchProduct(searchRequest) {
-        return fetch(`${this.baseURL}/search?query=${searchRequest}`, {
+        return fetch(`${this.baseURL}/products/search?query=${searchRequest}`, {
+            method: "GET",
             headers: this.headers
         }).then(jsonificator)
     }
-}
-
-const config = {
-    baseURL: 'https://api.react-learning.ru',
-    headers: {
-        "Content-Type": "application/json",
-        authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDNlZDQ2NDMyOTFkNzkwYjNmMzRkZjQiLCJncm91cCI6Imdyb3VwLTEyIiwiaWF0IjoxNjgxOTE5NzMxLCJleHAiOjE3MTM0NTU3MzF9.2xuBfAgAuy9RgQ9_cUS-Lvyg0DJeJkd8w61S0UjxSwQ'
+    getUserInfo() {
+        return fetch(`${this.baseURL}/users/me`, {
+            method: "GET",
+            headers: this.headers
+        }).then(jsonificator)
     }
+    changeLike(productId, currentLikeState) {
+        return fetch(`${this.baseURL}/products/likes/${productId}`, {
+            method: `${currentLikeState ? 'DELETE' : 'PUT'}`,
+            headers: this.headers
+        }).then(jsonificator)
+    }
+
 }
 
 export const api = new Api(config)
