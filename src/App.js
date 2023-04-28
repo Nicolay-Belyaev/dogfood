@@ -25,13 +25,12 @@ function App() {
     }, [debounceValueInApp])
 
    useEffect(() => {
-       // сначала он дождется выполнения промисов и потом выполнит then. Результаты присваиваются соответственно
        Promise.all([api.getProductList(), api.getUserInfo()])
            .then(([productData,
                    userData]) => {
                setUser(userData);
                setCards(productData.products)
-           })
+           }).catch((reject) => {console.log(reject.json)})
    }, [])
 
     return (
