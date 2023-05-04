@@ -10,6 +10,14 @@ class Api {
         this.headers = data.headers;
     }
 
+    getProductById(id) {
+        return fetch(`${this.baseURL}/products/${id}`, {
+            method: "GET",
+            headers: this.headers
+        }).then(jsonificator)
+            .catch((reject) => {console.log(jsonificator(reject))})
+    }
+
     getProductList() {
         return fetch(`${this.baseURL}/products`, {
             method: "GET",

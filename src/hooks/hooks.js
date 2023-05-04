@@ -1,11 +1,10 @@
 import {useEffect, useState} from "react";
-// TODO: попробовать через  useDeferredValue
-export const useDebounce = (path) => {
+export const useDebounce = (path, delay) => {
     const [debounceValue, setDebounceValue] = useState(path)
     useEffect(() => {
         const timeout = setTimeout(() => {
             setDebounceValue(path)
-        }, 1000)
+        }, delay)
         return () => clearTimeout(timeout)
     }, [path])
     return debounceValue

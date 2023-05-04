@@ -3,19 +3,36 @@ import "./header.css"
 
 import {Logo} from "../Logo/logo";
 import {Search} from "../Search/search";
+import {useLocation} from "react-router";
+import {Link} from "react-router-dom";
+import {ReactComponent as Basket} from './img/cart.svg';
+import {ReactComponent as Like} from '../Card/like.svg';
+import {ReactComponent as Profile} from './img/profile.svg';
 
 
-export const Header = (props) => {
+export const Header = ({setSearch, favorites}) => {
     const setSearchQuery = (searchRequest) => {
-        props.setSearch(searchRequest)
+        setSearch(searchRequest)
     }
+
+    const location = useLocation()
 
     return (
         <div className="header">
-            <div className="container">
-                <div className="header__wrapper">
-                    <Logo classname = 'logo' />
-                    <Search setSearch={setSearchQuery} />
+            <div className='container'>
+                <div className='header__wrapper'>
+                    <Link to={'/'}>
+                        <Logo className='logo' />
+                    </Link>
+                    {location.pathname === '/' && <Search setSearch={setSearchQuery} />}
+                    <div className='header__icons'>
+                        <Link className='header__fav' to={'/favorites'}>
+                            <Like className='header__like' />
+                            {!!favorites.length && <span className='header__bubble'>{favorites.length}</span>}
+                        </Link>
+                        <Basket className='header__icon' />
+                        <Profile className='header__icon' />
+                    </div>
                 </div>
             </div>
         </div>
