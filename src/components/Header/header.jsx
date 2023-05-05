@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext} from "react";
 import "./header.css"
 
 import {Logo} from "../Logo/logo";
@@ -8,9 +8,11 @@ import {Link} from "react-router-dom";
 import {ReactComponent as Basket} from './img/cart.svg';
 import {ReactComponent as Like} from '../Card/like.svg';
 import {ReactComponent as Profile} from './img/profile.svg';
+import {AppContext} from "../../context/appcontext";
 
 
-export const Header = ({setSearch, favorites}) => {
+export const Header = () => {
+    const {favorites, setSearch} = useContext(AppContext)
     const setSearchQuery = (searchRequest) => {
         setSearch(searchRequest)
     }

@@ -1,10 +1,13 @@
-import React from "react";
+import React, {useContext} from "react";
 import "./card.css";
 
 import { ReactComponent as Like } from "./like.svg";
 import {Link} from "react-router-dom";
+import {AppContext} from "../../context/appcontext";
 
-export const Card = ({ discount, pictures, image, price, name, wight, tags, likes, user, product, handleLike }) => {
+export const Card = ({ discount, pictures, image, price, name, wight, tags, likes, product }) => {
+    const {user, handleLike} = useContext(AppContext)
+
     const handleClick = () => {
         handleLike(product, isLiked)
     }

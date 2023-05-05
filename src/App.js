@@ -1,13 +1,17 @@
 import React, { useEffect, useState } from "react";
 import {Route, Routes} from "react-router";
 import {api} from "./utils/api";
+import {createdAtToTimestamp} from "./utils/createdAtToTimestamp";
 import {useDebounce} from "./hooks/hooks";
 
+import {AppContext} from "./context/appcontext";
+
 import {Header} from "./components/Header/header";
-import {CatalogPage} from "./components/Pages/CatalogPage/catalogpage";
-import {ProductPage} from "./components/Pages/ProductPage/productpage";
-import {FavoritePage} from "./components/Pages/FavoritePage/favoritepage";
-import {createdAtToTimestamp} from "./utils/createdAtToTimestamp";
+import {CatalogPage} from "./Pages/CatalogPage/catalogpage";
+import {ProductPage} from "./Pages/ProductPage/productpage";
+import {FavoritePage} from "./Pages/FavoritePage/favoritepage";
+
+
 
 export function App() {
     const [user, setUser] = useState({})
@@ -76,30 +80,21 @@ export function App() {
            }).catch((reject) => {console.log(reject.json)})
    }, [])
 
+    const contextCarrier = {handleLike, onSort, search, setSearch, user, favorites, cards};
+
     return (
+        <AppContext.Provider value={contextCarrier}>
         <div className='App'>
-            <Header setSearch={setSearch} favorites={favorites}/>
+            <Header />
             <main className='container'>
                 <Routes>
-                    <Route path="/" element={
-                            <CatalogPage
-                            onSort={onSort}
-                            search={search}
-                            cards={cards}
-                            user={user}
-                            handleLike={handleLike}
-                        />} />
+                    <Route path="/" element={<CatalogPage/>} />
                     <Route path="/product/:id" element={<ProductPage />} />
-                    <Route path="/favorites" element={
-                        <FavoritePage
-                            favorites={favorites}
-                            user={user}
-                            handleLike={handleLike}
-                        />}
-                    />
+                    <Route path="/favorites" element={<FavoritePage />}/>
                     <Route path="*" element={<div>404. Found nothing.</div>} />
                 </Routes>
             </main>
         </div>
+        </AppContext.Provider>
     )
 }

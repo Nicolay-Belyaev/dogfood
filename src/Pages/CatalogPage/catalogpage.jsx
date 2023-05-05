@@ -1,8 +1,10 @@
-import React from "react";
-import {Cardlist} from "../../CardList/cardlist";
+import React, {useContext} from "react";
+import {Cardlist} from "../../components/CardList/cardlist";
 import './catalogpage.css';
+import {AppContext} from "../../context/appcontext";
 
-export const CatalogPage = ({ cards, user, handleLike, search, onSort }) => {
+export const CatalogPage = () => {
+    const {cards, search, onSort, handleLike} = useContext(AppContext)
     const changeWordEnd = (cardsLength) => {
         const leftover = cardsLength % 10;
         if (!cardsLength || !leftover || (leftover >= 5 && leftover < 9)) {return ' товаров.'}
@@ -27,7 +29,7 @@ export const CatalogPage = ({ cards, user, handleLike, search, onSort }) => {
                <p className='search'>
                    По запросу <b>{search}</b> {cards.length === 1 ? 'найден' : 'найдено'} <b>{cards.length}</b>{changeWordEnd(cards.length)}
                </p>}
-            <Cardlist cards={cards} user={user} handleLike={handleLike} />
+            <Cardlist cards={cards} handleLike={handleLike} />
         </>
 
     )
