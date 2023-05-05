@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import {Route, Routes} from "react-router";
+
 import {api} from "./utils/api";
-import {createdAtToTimestamp} from "./utils/createdAtToTimestamp";
+import {likedByCurrentUser, createdAtToTimestamp, productRating} from "./utils/utils";
+
 import {useDebounce} from "./hooks/hooks";
-
 import {AppContext} from "./context/appcontext";
-
 import {Header} from "./components/Header/header";
+import {CHEAPEST, EXPENSIVE, NEWEST, POPULAR, SALE, RATE} from "./constants/constants";
+
 import {CatalogPage} from "./Pages/CatalogPage/catalogpage";
 import {ProductPage} from "./Pages/ProductPage/productpage";
 import {FavoritePage} from "./Pages/FavoritePage/favoritepage";
-
 
 
 export function App() {
@@ -34,32 +35,32 @@ export function App() {
         switch (sortKey) {
             default:
                 break;
-            case 'popular':
+            case POPULAR:
                 const cardsSortedByLikes= cards.sort((a, b) => b.likes.length - a.likes.length)
                 setCards([...cardsSortedByLikes])
                 break;
-            case 'cheapest':
+            case CHEAPEST:
                 const cardsSortedFromCheapest = cards.sort((a, b) => a.price - b.price)
                 setCards([...cardsSortedFromCheapest])
                 break;
-            case 'most-expansive':
+            case EXPENSIVE:
                 const cardsSortedFromExpensive = cards.sort((a, b) => b.price - a.price)
                 setCards([...cardsSortedFromExpensive])
                 break;
-            case 'newest':
+            case NEWEST:
                 const cardsSortedByCreationTime =
                     cards.sort((a, b) => createdAtToTimestamp(b) - createdAtToTimestamp(a))
                 setCards([...cardsSortedByCreationTime])
                 break;
-            case 'sale':
+            case SALE:
                 const cardsSortedByDiscount= cards.sort((a, b) => b.discount - a.discount)
                 setCards([...cardsSortedByDiscount])
                 break;
+            case RATE:
+                console.log(cards[0].reviews)
+                const cardsSortedByRating = cards.sort((a, b) => productRating(b) - productRating(a))
+                setCards([...cardsSortedByRating])
         }
-    }
-
-    const likedByCurrentUser = (product, userId) => {
-        return product.likes.some(e => e === userId)
     }
 
     useEffect(() => {
@@ -88,7 +89,7 @@ export function App() {
             <Header />
             <main className='container'>
                 <Routes>
-                    <Route path="/" element={<CatalogPage/>} />
+                    <Route path="/" element={<CatalogPage />} />
                     <Route path="/product/:id" element={<ProductPage />} />
                     <Route path="/favorites" element={<FavoritePage />}/>
                     <Route path="*" element={<div>404. Found nothing.</div>} />

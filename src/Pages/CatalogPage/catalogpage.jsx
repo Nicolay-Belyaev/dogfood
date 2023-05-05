@@ -1,7 +1,9 @@
 import React, {useContext} from "react";
-import {Cardlist} from "../../components/CardList/cardlist";
+
 import './catalogpage.css';
+import {Cardlist} from "../../components/CardList/cardlist";
 import {AppContext} from "../../context/appcontext";
+import {CHEAPEST, EXPENSIVE, NEWEST, POPULAR, SALE, RATE} from "../../constants/constants";
 
 export const CatalogPage = () => {
     const {cards, search, onSort, handleLike} = useContext(AppContext)
@@ -12,18 +14,19 @@ export const CatalogPage = () => {
         if (leftover === 1) {return ' товар.'}
     }
 
-    const sortedIteams = [
-        {id: 'popular', title: 'Популярные'},
-        {id: 'cheapest', title: 'Сначала дешевые'},
-        {id: 'most-expansive', title: 'Сначала дорогие'},
-        {id: 'newest', title: 'Новинки'},
-        {id: 'sale', title: 'Распродажа'}
+    const sortedItems = [
+        {id: POPULAR, title: 'Популярные'},
+        {id: CHEAPEST, title: 'Сначала дешевые'},
+        {id: EXPENSIVE, title: 'Сначала дорогие'},
+        {id: NEWEST, title: 'Новинки'},
+        {id: SALE, title: 'Распродажа'},
+        {id: RATE, title: 'По рейтингу'}
     ]
 
     return (
         <>
            <div className='sort-cards'>
-                {sortedIteams.map(e => <span className='sort-item' key={e.id} onClick={()=>onSort(e.id)}>{e.title} </span>)}
+                {sortedItems.map(e => <span className='sort-item' key={e.id} onClick={()=>onSort(e.id)}>{e.title} </span>)}
            </div>
            {search &&
                <p className='search'>
