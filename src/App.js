@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {Route, Routes} from "react-router";
 
 import {api} from "./utils/api";
@@ -31,7 +31,9 @@ export function App() {
             setFavorites((state)=> state.filter(f => f._id !== updatedCard._id)) :
             setFavorites((state) => [updatedCard, ...state]);
     }
-     const onSort = (sortKey) => {
+
+    const onSort = (sortKey) => {
+        console.log('and another one')
         switch (sortKey) {
             default:
                 break;

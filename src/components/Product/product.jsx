@@ -1,4 +1,4 @@
-import "./product.css";
+import "./product.scss";
 import {BackButton} from "../BackButton/backbutton";
 
 export const Product = ({ product }) => {

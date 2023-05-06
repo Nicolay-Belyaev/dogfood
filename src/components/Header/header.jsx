@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import "./header.css"
+import "./header.scss"
 
 import {Logo} from "../Logo/logo";
 import {Search} from "../Search/search";
