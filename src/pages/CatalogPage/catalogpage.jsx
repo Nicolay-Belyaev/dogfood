@@ -6,7 +6,7 @@ import {AppContext} from "../../context/appcontext";
 import {CHEAPEST, EXPENSIVE, NEWEST, POPULAR, SALE, RATE} from "../../constants/constants";
 
 export const CatalogPage = () => {
-    const {cards, search, onSort, handleLike} = useContext(AppContext)
+    const {cards, search, onSort } = useContext(AppContext)
     const changeWordEnd = (cardsLength) => {
         const leftover = cardsLength % 10;
         if (!cardsLength || !leftover || (leftover >= 5 && leftover < 9)) {return ' товаров.'}
@@ -32,7 +32,7 @@ export const CatalogPage = () => {
                <p className='search'>
                    По запросу <b>{search}</b> {cards.length === 1 ? 'найден' : 'найдено'} <b>{cards.length}</b>{changeWordEnd(cards.length)}
                </p>}
-            <Cardlist cards={cards} handleLike={handleLike} />
+            <Cardlist cards={cards} />
         </>
 
     )

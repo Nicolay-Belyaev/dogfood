@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import "./card.css";
+import "./card.scss";
 
 import { ReactComponent as Like } from "./like.svg";
 import {Link} from "react-router-dom";
@@ -7,11 +7,11 @@ import {AppContext} from "../../context/appcontext";
 
 export const Card = ({ discount, pictures, image, price, name, wight, tags, likes, product }) => {
     const {user, handleLike} = useContext(AppContext)
-
+    const isLiked = likes.some(e => e === user._id)
     const handleClick = () => {
         handleLike(product, isLiked)
     }
-    const isLiked = likes.some(e => e === user._id)
+
     return (
         <div className='card'>
             <div className='card__sticky card__sticky_type_top-left'>

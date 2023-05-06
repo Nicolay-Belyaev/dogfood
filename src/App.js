@@ -9,9 +9,9 @@ import {AppContext} from "./context/appcontext";
 import {Header} from "./components/Header/header";
 import {CHEAPEST, EXPENSIVE, NEWEST, POPULAR, SALE, RATE} from "./constants/constants";
 
-import {CatalogPage} from "./Pages/CatalogPage/catalogpage";
-import {ProductPage} from "./Pages/ProductPage/productpage";
-import {FavoritePage} from "./Pages/FavoritePage/favoritepage";
+import {CatalogPage} from "./pages/CatalogPage/catalogpage";
+import {ProductPage} from "./pages/ProductPage/productpage";
+import {FavoritePage} from "./pages/FavoritePage/favoritepage";
 
 
 export function App() {
