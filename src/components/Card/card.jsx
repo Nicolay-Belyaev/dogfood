@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
 import "./card.scss";
 
-import { ReactComponent as Like } from "./like.svg";
+import { ReactComponent as Like } from "../Resourses/img/like.svg";
 import {Link} from "react-router-dom";
 import {AppContext} from "../../context/appcontext";
 

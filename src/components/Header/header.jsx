@@ -1,13 +1,13 @@
-import React, {useContext} from "react";
+import React, {memo, useContext} from "react";
 import "./header.scss"
 
 import {Logo} from "../Logo/logo";
 import {Search} from "../Search/search";
 import {useLocation} from "react-router";
 import {Link} from "react-router-dom";
-import {ReactComponent as Basket} from './img/cart.svg';
-import {ReactComponent as Like} from '../Card/like.svg';
-import {ReactComponent as Profile} from './img/profile.svg';
+import {ReactComponent as Basket} from '../Resourses/img/cart.svg';
+import {ReactComponent as Like} from '../Resourses/img/like.svg';
+import {ReactComponent as Profile} from '../Resourses/img/profile.svg';
 import {AppContext} from "../../context/appcontext";
 
 

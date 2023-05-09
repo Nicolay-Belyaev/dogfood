@@ -1,7 +1,8 @@
 import React from "react";
-import "./search.css"
+import "./search.scss"
 
 export const Search = ({ setSearch }) => {
+
     return (
         <input
             placeholder="search..."

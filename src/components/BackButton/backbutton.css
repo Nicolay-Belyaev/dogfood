@@ -1,9 +1,9 @@
 .navigate_back {
-    cursor: pointer;
     text-decoration: none;
     font-weight: 400;
     font-size: 14px;
     line-height: 20px;
     color: #7B8E98;
     width: fit-content;
+    cursor: pointer;
 }

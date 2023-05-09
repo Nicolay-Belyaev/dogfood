@@ -33,7 +33,6 @@ export function App() {
     }
 
     const onSort = (sortKey) => {
-        console.log('and another one')
         switch (sortKey) {
             default:
                 break;
@@ -59,7 +58,6 @@ export function App() {
                 setCards([...cardsSortedByDiscount])
                 break;
             case RATE:
-                console.log(cards[0].reviews)
                 const cardsSortedByRating = cards.sort((a, b) => productRating(b) - productRating(a))
                 setCards([...cardsSortedByRating])
         }
@@ -79,7 +77,6 @@ export function App() {
                setCards(productData.products)
                const likedCards = productData.products.filter(e => likedByCurrentUser(e, userData._id))
                setFavorites((likedCards))
-               console.log(likedCards)
            }).catch((reject) => {console.log(reject.json)})
    }, [])
 

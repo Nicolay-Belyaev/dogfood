@@ -4,7 +4,6 @@ import './catalogpage.css';
 import {Cardlist} from "../../components/CardList/cardlist";
 import {AppContext} from "../../context/appcontext";
 import {CHEAPEST, EXPENSIVE, NEWEST, POPULAR, SALE, RATE} from "../../constants/constants";
-import {Select} from "antd";
 
 export const CatalogPage = () => {
     const {cards, search, onSort } = useContext(AppContext)
