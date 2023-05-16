@@ -7,11 +7,13 @@ import {likedByCurrentUser, createdAtToTimestamp, productRating} from "./utils/u
 import {useDebounce} from "./hooks/hooks";
 import {AppContext} from "./context/appcontext";
 import {Header} from "./components/Header/header";
+import {Footer} from "./components/Footer/footer";
 import {CHEAPEST, EXPENSIVE, NEWEST, POPULAR, SALE, RATE} from "./constants/constants";
 
 import {CatalogPage} from "./pages/CatalogPage/catalogpage";
 import {ProductPage} from "./pages/ProductPage/productpage";
 import {FavoritePage} from "./pages/FavoritePage/favoritepage";
+
 
 
 export function App() {
@@ -94,6 +96,7 @@ export function App() {
                     <Route path="*" element={<div>404. Found nothing.</div>} />
                 </Routes>
             </main>
+            <Footer />
         </div>
         </AppContext.Provider>
     )

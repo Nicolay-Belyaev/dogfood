@@ -1,0 +1,39 @@
+.footer {
+    background: #ffe44d;
+    width: 100%;
+    height: 194px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-top: 20px;
+      &__links {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 0;
+        gap: 12px;
+        width: 150px;
+        height: 114px;
+      }
+      &__logo {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 0;
+        gap: 12px;
+        width: 224px;
+        height: 114px;
+      }
+      &__contacts {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+          &-phone {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+          }
+      }
+}
