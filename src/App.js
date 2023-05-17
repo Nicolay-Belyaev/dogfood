@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Route, Routes} from "react-router";
 
 import {api} from "./utils/api";
@@ -13,6 +13,7 @@ import {CHEAPEST, EXPENSIVE, NEWEST, POPULAR, SALE, RATE} from "./constants/cons
 import {CatalogPage} from "./pages/CatalogPage/catalogpage";
 import {ProductPage} from "./pages/ProductPage/productpage";
 import {FavoritePage} from "./pages/FavoritePage/favoritepage";
+import {Modal} from "./components/Modal/modal";
 
 
 
@@ -21,6 +22,8 @@ export function App() {
     const [cards, setCards] = useState([]);
     const [search, setSearch] = useState(undefined);
     const [favorites, setFavorites] = useState([])
+
+    const [modalShow, setModalShow] = useState(false)
     const debounceValueInApp = useDebounce(search, 350)
 
     const handleLike = async (product, isLiked) => {
@@ -82,11 +85,13 @@ export function App() {
            }).catch((reject) => {console.log(reject.json)})
    }, [])
 
-    const contextCarrier = {handleLike, onSort, search, setSearch, user, favorites, cards};
+    const contextCarrier
+        = {handleLike, onSort, modalShow, setModalShow, search, setSearch, user, favorites, cards};
 
     return (
         <AppContext.Provider value={contextCarrier}>
         <div className='App'>
+            <Modal />
             <Header />
             <main className='container'>
                 <Routes>
