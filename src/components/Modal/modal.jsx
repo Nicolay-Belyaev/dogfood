@@ -16,6 +16,7 @@ export const Modal = ({ children }) => {
     useEffect(() => {
         if (modalShow) {
             document.addEventListener('keydown', escapeClose)
+            return
         }
         document.removeEventListener('keydown', escapeClose)
     }, [modalShow])
