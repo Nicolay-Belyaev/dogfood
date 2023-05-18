@@ -1,4 +1,4 @@
-.modal__container {
+._container {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -15,17 +15,21 @@
 
 .modal {
   background-color: white;
-  position: fixed;
   display: flex;
+  flex-direction: column;
 
-  justify-content: center;
+  justify-content: start;
   align-items: center;
 
   padding: 16px;
   box-shadow: 0px 2px 8px rgba(40, 41, 61, 0.08), 0px 20px 32px rgba(96, 97, 112, 0.5);
   border-radius: 20px;
-  z-index: 99;
 
   width: 420px;
   height: 426px;
+  &__close {
+    position: relative;
+    left: 206px;
+    cursor: pointer;
+  }
 }

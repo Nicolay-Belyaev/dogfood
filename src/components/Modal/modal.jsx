@@ -3,28 +3,28 @@ import './modal.scss'
 import {AppContext} from "../../context/appcontext";
 
 
-export const Modal = () => {
+export const Modal = ({ children }) => {
     const {modalShow, setModalShow} = useContext(AppContext)
 
     const escapeClose = useCallback((event) => {
         if (event.key === 'Escape') {
             setModalShow(false)
+            console.log('escape')
         }
-    }, [setModalShow])
+    }, [])
 
-    useEffect((modal) => {
+    useEffect(() => {
         if (modalShow) {
-            return document.addEventListener('keydown', escapeClose)
+            document.addEventListener('keydown', escapeClose)
         }
         document.removeEventListener('keydown', escapeClose)
-    }, [escapeClose, modalShow])
+    }, [modalShow])
 
     return (modalShow &&
-            <div className='modal__container'>
+            <div className='_container'>
                 <div className='modal'>
-                    <div className='modal_content'>
-                        <span onClick={() => setModalShow(false)}>Click</span>
-                    </div>
+                    <div className='modal__close' onClick={() => setModalShow(false)}>X</div>
+                    {children}
                 </div>
             </div>
             )

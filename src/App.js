@@ -14,6 +14,7 @@ import {CatalogPage} from "./pages/CatalogPage/catalogpage";
 import {ProductPage} from "./pages/ProductPage/productpage";
 import {FavoritePage} from "./pages/FavoritePage/favoritepage";
 import {Modal} from "./components/Modal/modal";
+import {Login} from "./components/Auth/Login/login";
 
 
 
@@ -38,6 +39,7 @@ export function App() {
     }
 
     const onSort = (sortKey) => {
+        // TODO: сократить через spread-return
         switch (sortKey) {
             default:
                 break;
@@ -91,7 +93,7 @@ export function App() {
     return (
         <AppContext.Provider value={contextCarrier}>
         <div className='App'>
-            <Modal />
+            <Modal children={<Login />}/>
             <Header />
             <main className='container'>
                 <Routes>
