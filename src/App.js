@@ -4,19 +4,19 @@ import {Route, Routes} from "react-router";
 import {api} from "./utils/api";
 import {likedByCurrentUser, createdAtToTimestamp, productRating} from "./utils/utils";
 
-import {useDebounce} from "./hooks/hooks";
-import {AppContext} from "./context/appcontext";
 import {Header} from "./components/Header/header";
 import {Footer} from "./components/Footer/footer";
+import {Modal} from "./components/Modal/modal";
+import {Login} from "./components/Auth/Login/login";
+
+import {useDebounce} from "./hooks/hooks";
+import {AppContext} from "./context/appcontext";
+
 import {CHEAPEST, EXPENSIVE, NEWEST, POPULAR, SALE, RATE} from "./constants/constants";
 
 import {CatalogPage} from "./pages/CatalogPage/catalogpage";
 import {ProductPage} from "./pages/ProductPage/productpage";
 import {FavoritePage} from "./pages/FavoritePage/favoritepage";
-import {Modal} from "./components/Modal/modal";
-import {Login} from "./components/Auth/Login/login";
-
-
 
 export function App() {
     const [user, setUser] = useState({})

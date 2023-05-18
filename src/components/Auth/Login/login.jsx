@@ -2,12 +2,15 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import './login.scss'
 
+// TODO: обработка и визуализация ошибок ввода
+//       работа с API
+//       стили
 export const Login = () => {
     const {register, handleSubmit} = useForm({mode: 'onBlur'})
 
     const sendData = (data) => {
         console.log(data)
-        // TODO: тут будет вызов API
+        // TODO: тут будет вызов API. Зачем мне отдельная функция? Можно вызвать API в handleSubmit
     }
 
     const emailRequirements = {
