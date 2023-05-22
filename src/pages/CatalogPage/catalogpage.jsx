@@ -4,15 +4,10 @@ import './catalogpage.css';
 import {Cardlist} from "../../components/CardList/cardlist";
 import {AppContext} from "../../context/appcontext";
 import {CHEAPEST, EXPENSIVE, NEWEST, POPULAR, SALE, RATE} from "../../constants/constants";
+import {changeWordEnd} from "../../utils/utils";
 
 export const CatalogPage = () => {
     const {cards, search, onSort } = useContext(AppContext)
-    const changeWordEnd = (cardsLength) => {
-        const leftover = cardsLength % 10;
-        if (!cardsLength || !leftover || (leftover >= 5 && leftover < 9)) {return ' товаров.'}
-        if (leftover > 1 && leftover < 5) {return ' товара.'}
-        if (leftover === 1) {return ' товар.'}
-    }
 
     const sortedItems = [
         {id: POPULAR, title: 'Популярные'},
@@ -30,7 +25,7 @@ export const CatalogPage = () => {
            </div>
            {search &&
                <p className='search'>
-                   По запросу <b>{search}</b> {cards.length === 1 ? 'найден' : 'найдено'} <b>{cards.length}</b>{changeWordEnd(cards.length)}
+                   По запросу <b>{search}</b> {cards.length === 1 ? 'найден' : 'найдено'} <b>{cards.length}</b>{changeWordEnd(cards.length, 'товар')}.
                </p>}
             <Cardlist cards={cards} />
 

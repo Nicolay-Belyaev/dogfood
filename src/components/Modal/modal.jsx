@@ -1,5 +1,5 @@
 import React, {useCallback, useContext, useEffect} from "react";
-import './modal.scss'
+import s from './index.module.scss'
 import {AppContext} from "../../context/appcontext";
 
 
@@ -9,7 +9,6 @@ export const Modal = ({ children }) => {
     const escapeClose = useCallback((event) => {
         if (event.key === 'Escape') {
             setModalShow(false)
-            console.log('escape')
         }
     }, [])
 
@@ -22,9 +21,9 @@ export const Modal = ({ children }) => {
     }, [modalShow])
 
     return (modalShow &&
-            <div className='_container'>
-                <div className='modal'>
-                    <div className='modal__close' onClick={() => setModalShow(false)}>X</div>
+            <div className={s.container}>
+                <div className={s.modal}>
+                    <div className={s.modal__close} onClick={() => setModalShow(false)}>X</div>
                     {children}
                 </div>
             </div>
