@@ -22,7 +22,7 @@ export const ProductPage = () => {
             setProduct((s) => ({ ...s, likes: filteredLikes }))
         } else {
             const addLikes = [...item.likes, user?._id];
-            setProduct((s) => ({ ...s, likes: addLikes }))
+            setProduct((prevState) => ({ ...prevState, likes: addLikes }))
         }
     }, [handleLike, user?._id])
 

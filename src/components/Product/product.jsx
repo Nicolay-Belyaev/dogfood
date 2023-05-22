@@ -10,6 +10,7 @@ import {changeWordEnd, productRating} from "../../utils/utils";
 import {BaseButton} from "../Button/basebutton";
 import {ReactComponent as Like} from "../Resourses/img/like.svg";
 import {ReactComponent as Truck} from "../Resourses/img/truck.svg";
+import {Reviews} from "../Reviews/reviews";
 
 export const Product = ({product, onProductLike, sendReview, onDeleteReview}) => {
     const [isProductLiked, setIsProductLiked] = useState(false)
@@ -31,7 +32,7 @@ export const Product = ({product, onProductLike, sendReview, onDeleteReview}) =>
 
     return (
         <div className={`${s.product} container`}>
-            {/*Title region*/}
+
             <div className={s.titleWrapper}>
                 <BackButton/>
                 <span className={s.productTitle}>{product.name}</span>
@@ -41,9 +42,7 @@ export const Product = ({product, onProductLike, sendReview, onDeleteReview}) =>
                     <span>{product.reviews.length}{changeWordEnd(product.reviews.length, 'отзыв')}</span>
                 </div>
             </div>
-            {/*Title region ends*/}
 
-            {/*Product info region*/}
             <div className={s.productInfo}>
                 <div className={s.imgWrapper}>
                     <img className={s.img} src={product.pictures} alt={''}/>
@@ -56,7 +55,6 @@ export const Product = ({product, onProductLike, sendReview, onDeleteReview}) =>
                             className={`${s.price} ${s.newPrice}`}>{getDiscountPrice(product.discount, product.price)}&nbsp;p</span>
                     }
 
-            {/*Controls region*/}
             {/*TODO: Доделать иконки кнопок, дописать логику изменения значения при нажатии + / -*/}
                     <div className={s.controls}>
                         <div className={s.controls__cart__left}>
@@ -72,9 +70,7 @@ export const Product = ({product, onProductLike, sendReview, onDeleteReview}) =>
                             <span>{isProductLiked ? 'В избранном' : 'В избранное'}</span>
                         </button>
                     </div>
-            {/*Controls region ends*/}
 
-            {/*Delivery region*/}
                     <div className={s.delivery}>
                         <Truck/>
                         <div>
@@ -84,8 +80,12 @@ export const Product = ({product, onProductLike, sendReview, onDeleteReview}) =>
                     </div>
                 </div>
             </div>
-            {/*Delivery region ends*/}
-            {/*Product info region ends*/}
+
+            <div className={s.desc}>
+                <span className={s.price}>Описание</span>
+                <span>{product.description}</span>
+            </div>
+            <Reviews onDeleteReview={onDeleteReview} onSendReview={onSendReview} reviews={product.reviews} />
         </div>
     )
 }

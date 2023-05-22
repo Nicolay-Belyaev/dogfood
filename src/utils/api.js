@@ -1,4 +1,5 @@
 import {config} from "./confing";
+import {theme} from "antd";
 
 const jsonificator = (data) => {
     return data.json()
@@ -47,7 +48,20 @@ class Api {
         }).then(jsonificator)
             .catch((reject) => {console.log(jsonificator(reject))})
     }
-
+    addProductReview(productId, data) {
+        return fetch(`${this.baseURL}/products/review/${productId}`, {
+            method: 'POST',
+            headers: this.headers,
+            body: JSON.stringify(data)
+        }).then(jsonificator)
+            .catch((reject => {console.log(jsonificator(reject))}))
+        }
+    deleteProductReview(productId, reviewId) {
+        return fetch(`${this.baseUrl}/products/review/${productId}/${reviewId}`, {
+            headers: this.headers,
+            method: "DELETE",
+        }).then(jsonificator)
+    }
 }
 
 export const api = new Api(config)

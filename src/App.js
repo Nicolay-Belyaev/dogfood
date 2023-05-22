@@ -1,8 +1,8 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {Route, Routes} from "react-router";
 
 import {api} from "./utils/api";
-import {likedByCurrentUser, createdAtToTimestamp, productRating} from "./utils/utils";
+import {likedByCurrentUser, dateToTimestamp, productRating} from "./utils/utils";
 
 import {Header} from "./components/Header/header";
 import {Footer} from "./components/Footer/footer";
@@ -27,16 +27,16 @@ export function App() {
     const [modalShow, setModalShow] = useState(false)
     const debounceValueInApp = useDebounce(search, 350)
 
-    const handleLike = async (product, isLiked) => {
-        const updatedCard = await api.changeLike(product._id, isLiked)
-        const index = cards.findIndex(e => e._id === updatedCard._id)
-        if (index !== -1) {
-            setCards(state => [...state.slice(0, index), updatedCard, ...state.slice(index+1)])
-        }
-        isLiked ?
-            setFavorites((state)=> state.filter(f => f._id !== updatedCard._id)) :
-            setFavorites((state) => [updatedCard, ...state]);
-    }
+    const handleLike = useCallback(async (product, wasLiked) => {
+        const updatedCard = await api.changeLike(product._id, wasLiked);
+        setCards(s => [...s.map(e => e._id === updatedCard?._id ? updatedCard : e)]);
+
+        wasLiked ?
+            setFavorites((prevState) => prevState.filter(f => f._id !== updatedCard._id))
+            :
+            setFavorites((prevState) => [updatedCard, ...prevState])
+        return wasLiked;
+    }, [])
 
     const onSort = (sortKey) => {
         // TODO: сократить через spread-return
@@ -57,7 +57,7 @@ export function App() {
                 break;
             case NEWEST:
                 const cardsSortedByCreationTime =
-                    cards.sort((a, b) => createdAtToTimestamp(b) - createdAtToTimestamp(a))
+                    cards.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
                 setCards([...cardsSortedByCreationTime])
                 break;
             case SALE:
