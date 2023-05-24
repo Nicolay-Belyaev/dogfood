@@ -57,7 +57,7 @@ class Api {
             .catch((reject => {console.log(jsonificator(reject))}))
         }
     deleteProductReview(productId, reviewId) {
-        return fetch(`${this.baseUrl}/products/review/${productId}/${reviewId}`, {
+        return fetch(`${this.baseURL}/products/review/${productId}/${reviewId}`, {
             headers: this.headers,
             method: "DELETE",
         }).then(jsonificator)

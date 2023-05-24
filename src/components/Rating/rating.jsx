@@ -12,7 +12,7 @@ export const Rating = ({rating, setRate = () => {}, mutable = false}) => {
         if (!mutable) {
             return
         }
-        setRate(rating)
+        setRate(rate)
     }, [setRate, mutable])
     const changeDisplay = (rate) => {
         if (!mutable) {

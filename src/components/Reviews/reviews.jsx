@@ -60,7 +60,7 @@ export const Reviews = ({reviews, onSendReview, onDeleteReview}) => {
                                             <Basket onClick={() => onDeleteReview(e._id)} className={s.reviews__basket}/>}
                                     </div>
                                     <div className={s.rate}>
-                                        <Rating rating={e.rate}/>
+                                        <Rating rating={e.rating}/>
                                     </div>
                                     <div className={s.text}>{e.text}</div>
                                 </div>
