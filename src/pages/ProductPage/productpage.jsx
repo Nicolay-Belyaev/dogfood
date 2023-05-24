@@ -33,7 +33,6 @@ export const ProductPage = () => {
 
 
     const onDeleteReview = useCallback(async id => {
-        console.log(product, product._id, id)
         api.deleteProductReview(product._id, id)
             .then(data => setProduct(() => ({ ...data })))
             .catch(() => console.log('err'))

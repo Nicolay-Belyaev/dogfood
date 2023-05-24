@@ -1,10 +1,9 @@
 import {config} from "./confing";
-import {theme} from "antd";
 
 const jsonificator = (data) => {
     return data.json()
 }
-
+// TODO: разбить апишку по предметному принципу: продукт отдельно, ревью отдельно, юзер отдельно and so on.
 class Api {
     constructor(data) {
         this.baseURL = data.baseURL;
@@ -58,9 +57,17 @@ class Api {
         }
     deleteProductReview(productId, reviewId) {
         return fetch(`${this.baseURL}/products/review/${productId}/${reviewId}`, {
-            headers: this.headers,
-            method: "DELETE",
+            method: 'DELETE',
+            headers: this.headers
         }).then(jsonificator)
+    }
+    sighIn(data) {
+        return fetch(`${this.baseURL}/signin`, {
+            method: 'POST',
+            headers: this.headers,
+            body: JSON.stringify(data)
+        }).then(jsonificator)
+            .catch((reject => {console.log(jsonificator(reject))}))
     }
 }
 

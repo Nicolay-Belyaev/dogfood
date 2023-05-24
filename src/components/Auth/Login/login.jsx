@@ -1,16 +1,22 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-import './login.scss'
+import {useForm} from "react-hook-form";
+import '../index.modules.scss'
+import {api} from "../../../utils/api";
 
 // TODO: обработка и визуализация ошибок ввода
 //       работа с API
 //       стили
 export const Login = () => {
-    const {register, handleSubmit} = useForm({mode: 'onBlur'})
+    const {register, handleSubmit, formState: {errors}} = useForm({mode: 'onBlur'})
 
-    const sendData = (data) => {
-        console.log(data)
-        // TODO: тут будет вызов API. Зачем мне отдельная функция? Можно вызвать API в handleSubmit
+    const sendData = async (data) => {
+        try {
+            const userInfo = await api.sighIn(data)
+            localStorage.setItem('dogfood_token', userInfo.token)
+        } catch (error) {
+            alert("Что-то пошло не так. Смотри консоль для подробностей.")
+            console.log(error)
+        }
     }
 
     const emailRequirements = {
@@ -31,7 +37,7 @@ export const Login = () => {
         },
         pattern: {
             value: /^[A-Za-z\d]{8,}$/,
-            message: 'Пароль должен содержать не менее 8 символов и состоять из цифр и букв латинского алфавита'
+            message: 'Пароль должен содержать не менее 8 символов и состоять из цифр и букв латинского алфавита.'
         }
     }
 
@@ -41,15 +47,16 @@ export const Login = () => {
             <form className='login__form' onSubmit={handleSubmit(sendData)}>
                 <div className='login__inputs'>
                     <input className='login__form-input' type='text' {...register('email', {...emailRequirements})} placeholder='email'/>
-                    <input className='login__form-input' type='text' {...register('passwrod', {...passwordRequirements})} placeholder='password'/>
+                    {errors?.email && <div className='error_message'>{errors.email.message}</div>}
+                    <input className='login__form-input' type='text' {...register('password', {...passwordRequirements})} placeholder='password'/>
+                    {errors?.password && <div className='error_message'>{errors.password.message}</div>}
+                </div>
+                <div className='buttons'>
+                    <div>Восстановить пароль</div>
+                    <button className='button__yellow' type='submit'>Войти</button>
+                    <button className='button__blank'>Регистрация</button>
                 </div>
             </form>
-            <div className='reset'>Восстановить пароль</div>
-            <div className='buttons'>
-                <button className='button__yellow'>Войти</button>
-                <button className='button__blank'>Регистрация</button>
-            </div>
-
         </div>
     )
 }
