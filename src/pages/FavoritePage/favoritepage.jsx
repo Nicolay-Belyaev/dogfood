@@ -1,7 +1,7 @@
 import React, {useContext} from "react";
 
 import {Cardlist} from "../../components/CardList/cardlist";
-import {BackButton} from "../../components/BackButton/backbutton";
+import {BackButton} from "../../components/Buttons/BackButton/backbutton";
 import {ReactComponent as Like} from "../../components/Resourses/img/like.svg";
 import {AppContext} from "../../context/appcontext";
 import './favoritepage.css'

@@ -1,5 +1,5 @@
 import React, {useCallback, useEffect, useState} from "react";
-import {Route, Routes} from "react-router";
+import {Navigate, Route, Routes} from "react-router";
 
 import {api} from "./utils/api";
 import {likedByCurrentUser, dateToTimestamp, productRating} from "./utils/utils";
@@ -7,22 +7,21 @@ import {likedByCurrentUser, dateToTimestamp, productRating} from "./utils/utils"
 import {Header} from "./components/Header/header";
 import {Footer} from "./components/Footer/footer";
 import {Modal} from "./components/Modal/modal";
-import {Login} from "./components/Auth/Login/login";
+import {Login} from "./components/Auth/login";
+import {Routing} from "./components/Routing/routing";
 
 import {useDebounce} from "./hooks/hooks";
 import {AppContext} from "./context/appcontext";
 
 import {CHEAPEST, EXPENSIVE, NEWEST, POPULAR, SALE, RATE} from "./constants/constants";
-
-import {CatalogPage} from "./pages/CatalogPage/catalogpage";
-import {ProductPage} from "./pages/ProductPage/productpage";
-import {FavoritePage} from "./pages/FavoritePage/favoritepage";
+import {Register} from "./components/Auth/register";
 
 export function App() {
     const [user, setUser] = useState({})
     const [cards, setCards] = useState([]);
     const [search, setSearch] = useState(undefined);
     const [favorites, setFavorites] = useState([])
+    const [modalChildren, setModalChildren] = useState(<Register/>)
 
     const [modalShow, setModalShow] = useState(false)
     const debounceValueInApp = useDebounce(search, 350)
@@ -88,20 +87,16 @@ export function App() {
    }, [])
 
     const contextCarrier
-        = {handleLike, onSort, modalShow, setModalShow, search, setSearch, user, favorites, cards};
+        = {handleLike, onSort, modalShow, setModalShow, setModalChildren, search, setSearch, user, favorites, cards};
+
 
     return (
         <AppContext.Provider value={contextCarrier}>
         <div className='App'>
-            <Modal children={<Login />}/>
+            <Modal children={modalChildren}/>
             <Header />
             <main className='container'>
-                <Routes>
-                    <Route path="/" element={<CatalogPage />} />
-                    <Route path="/product/:id" element={<ProductPage />} />
-                    <Route path="/favorites" element={<FavoritePage />}/>
-                    <Route path="*" element={<div>404. Found nothing.</div>} />
-                </Routes>
+                <Routing />
             </main>
             <Footer />
         </div>

@@ -12,7 +12,7 @@ import {AppContext} from "../../context/appcontext";
 
 
 export const Header = () => {
-    const {favorites, setSearch, setModalShow} = useContext(AppContext)
+    const {favorites, setSearch, setModalShow, user} = useContext(AppContext)
     const setSearchQuery = (searchRequest) => {
         setSearch(searchRequest)
     }
@@ -33,9 +33,12 @@ export const Header = () => {
                         </Link>
                         <Basket className='header__icon' />
                         {/*TODO: следующий линк должен будет вести на регистрацию/авторизацию или в профиль для авторизованных пользователей*/}
-                        <Link to={location.pathname} onClick={() => setModalShow(true)}>
+                        <Link to={'/'} onClick={() => setModalShow(true)}>
                             <Profile className='header__icon' />
                         </Link>
+                    </div>
+                    <div>
+                        <span>{user.name}</span>
                     </div>
                 </div>
             </div>

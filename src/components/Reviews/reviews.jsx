@@ -4,7 +4,7 @@ import s from "./index.module.scss"
 import {Rating} from "../Rating/rating";
 import {useForm} from "react-hook-form";
 import {AppContext} from "../../context/appcontext";
-import {BaseButton} from "../Button/basebutton";
+import {BaseButton} from "../Buttons/BaseButton/basebutton";
 import {ReactComponent as Basket} from "../Resourses/img/basket.svg";
 
 const timeOptions = {

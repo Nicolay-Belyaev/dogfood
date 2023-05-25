@@ -4,10 +4,10 @@ import cn from "classnames";
 import s from './index.module.scss'
 import {AppContext} from "../../context/appcontext";
 
-import {BackButton} from "../BackButton/backbutton";
+import {BackButton} from "../Buttons/BackButton/backbutton";
 import {Rating} from "../Rating/rating";
 import {changeWordEnd, productRating} from "../../utils/utils";
-import {BaseButton} from "../Button/basebutton";
+import {BaseButton} from "../Buttons/BaseButton/basebutton";
 import {ReactComponent as Like} from "../Resourses/img/like.svg";
 import {ReactComponent as Truck} from "../Resourses/img/truck.svg";
 import {Reviews} from "../Reviews/reviews";

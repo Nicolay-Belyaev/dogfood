@@ -69,6 +69,18 @@ class Api {
         }).then(jsonificator)
             .catch((reject => {console.log(jsonificator(reject))}))
     }
+    sighUp(data) {
+        return fetch(`${this.baseURL}/signup`, {
+            method: 'POST',
+            headers: this.headers,
+            body: JSON.stringify({
+                "email": data.email,
+                "password": data.password,
+                "group": "12"
+            })
+        }).then(jsonificator)
+            .catch((reject => {console.log(jsonificator(reject))}))
+    }
 }
 
 export const api = new Api(config)

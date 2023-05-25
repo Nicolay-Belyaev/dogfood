@@ -38,6 +38,12 @@
       align-self: stretch;
       flex-grow: 0;
     }
+    &-passToggler {
+      position: relative;
+      cursor: pointer;
+      bottom: 40px;
+      left: 336px;
+    }
   }
 }
 
@@ -76,7 +82,6 @@
 }
 
 .button {
-
   &__yellow {
     display: flex;
     flex-direction: row;
@@ -96,7 +101,6 @@
     flex-grow: 0;
     cursor: pointer;
   }
-
   &__blank {
     display: flex;
     flex-direction: row;

@@ -1,14 +1,20 @@
 import React, {useCallback, useContext, useEffect} from "react";
 import s from './index.module.scss'
 import {AppContext} from "../../context/appcontext";
+import {Login} from "../Auth/login";
+import {Register} from "../Auth/register";
 
 
 export const Modal = ({ children }) => {
-    const {modalShow, setModalShow} = useContext(AppContext)
+    const {modalShow, setModalShow, setModalChildren} = useContext(AppContext)
 
+    const escapeSequence = () => {
+        setModalChildren(<Register/>)
+        setModalShow(false)
+    }
     const escapeClose = useCallback((event) => {
         if (event.key === 'Escape') {
-            setModalShow(false)
+            escapeSequence()
         }
     }, [])
 
@@ -23,7 +29,7 @@ export const Modal = ({ children }) => {
     return (modalShow &&
             <div className={s.container}>
                 <div className={s.modal}>
-                    <div className={s.modal__close} onClick={() => setModalShow(false)}>X</div>
+                    <div className={s.modal__close} onClick={escapeSequence}>X</div>
                     {children}
                 </div>
             </div>
