@@ -7,14 +7,14 @@ import {likedByCurrentUser, dateToTimestamp, productRating} from "./utils/utils"
 import {Header} from "./components/Header/header";
 import {Footer} from "./components/Footer/footer";
 import {Modal} from "./components/Modal/modal";
-import {Login} from "./components/Auth/login";
+import {Login} from "./components/Auth/AuthModals/login";
 import {Routing} from "./components/Routing/routing";
 
 import {useDebounce} from "./hooks/hooks";
 import {AppContext} from "./context/appcontext";
 
 import {CHEAPEST, EXPENSIVE, NEWEST, POPULAR, SALE, RATE} from "./constants/constants";
-import {Register} from "./components/Auth/register";
+import {Register} from "./components/Auth/AuthModals/register";
 
 export function App() {
     const [user, setUser] = useState({})

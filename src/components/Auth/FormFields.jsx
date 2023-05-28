@@ -1,7 +1,7 @@
 import React, {useContext, useState} from "react";
 import {useForm} from "react-hook-form";
-import {Reset} from "../reset";
-import {AppContext} from "../../../context/appcontext";
+import {Reset} from "./AuthModals/reset";
+import {AppContext} from "../../context/appcontext";
 
 const emailRequirements = {
     required: {
@@ -25,8 +25,8 @@ const passwordRequirements = {
     }
 }
 
-export const FormFields = (props) => {
-    const {submitSequence, submitButtonText, showPasswordFields,changeModalFormButtonText, changeModalFormOn} = props
+export const FormFields = ({showEmailField = true, ...props}) => {
+    const {showTokenField, submitSequence, submitButtonText, showPasswordFields, changeModalFormButtonText, changeModalFormOn} = props
     const {setModalChildren} = useContext(AppContext)
     const {handleSubmit, register, formState: {errors}} = useForm({mode: 'onBlur'})
 
@@ -36,6 +36,7 @@ export const FormFields = (props) => {
     <form className='login__form' onSubmit={handleSubmit(submitSequence)}>
     <div className='login__inputs'>
 
+        {showEmailField && <>
         <input
             className='login__form-input'
             type='text'
@@ -43,6 +44,17 @@ export const FormFields = (props) => {
             {...register('email', {...emailRequirements})}
         />
         {errors?.email && <div className='error_message'>{errors.email.message}</div>}
+        </>}
+
+        {showTokenField && <>
+        <input
+            className='login__form-input'
+            type={'text'}
+            placeholder='token'
+            {...register('token', {})}
+        />
+            <span>Введите полученный в письме токен</span>
+        </>}
 
         {showPasswordFields.passwordInput &&
         <><input
