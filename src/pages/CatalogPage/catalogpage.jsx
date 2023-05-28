@@ -28,8 +28,6 @@ export const CatalogPage = () => {
                    По запросу <b>{search}</b> {cards.length === 1 ? 'найден' : 'найдено'} <b>{cards.length}</b>{changeWordEnd(cards.length, 'товар')}.
                </p>}
             <Cardlist cards={cards} />
-
-
         </>
 
     )
