@@ -38,34 +38,21 @@ export function App() {
     }, [])
 
     const onSort = (sortKey) => {
-        // TODO: сократить через spread-return
         switch (sortKey) {
+            case POPULAR:
+                return setCards(prevState => [...cards.sort((a, b) => b.likes.length - a.likes.length)])
+            case CHEAPEST:
+                return setCards(prevState => [...cards.sort((a, b) => a.price - b.price)])
+            case EXPENSIVE:
+                return setCards(prevState => [...cards.sort((a, b) => b.price - a.price)])
+            case NEWEST:
+                return setCards(prevState => [...cards.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))])
+            case SALE:
+                return setCards(prevState => [...cards.sort((a, b) => b.discount - a.discount)])
+            case RATE:
+                return setCards(prevState => [...cards.sort((a, b) => productRating(b) - productRating(a))])
             default:
                 break;
-            case POPULAR:
-                const cardsSortedByLikes= cards.sort((a, b) => b.likes.length - a.likes.length)
-                setCards([...cardsSortedByLikes])
-                break;
-            case CHEAPEST:
-                const cardsSortedFromCheapest = cards.sort((a, b) => a.price - b.price)
-                setCards([...cardsSortedFromCheapest])
-                break;
-            case EXPENSIVE:
-                const cardsSortedFromExpensive = cards.sort((a, b) => b.price - a.price)
-                setCards([...cardsSortedFromExpensive])
-                break;
-            case NEWEST:
-                const cardsSortedByCreationTime =
-                    cards.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
-                setCards([...cardsSortedByCreationTime])
-                break;
-            case SALE:
-                const cardsSortedByDiscount= cards.sort((a, b) => b.discount - a.discount)
-                setCards([...cardsSortedByDiscount])
-                break;
-            case RATE:
-                const cardsSortedByRating = cards.sort((a, b) => productRating(b) - productRating(a))
-                setCards([...cardsSortedByRating])
         }
     }
 

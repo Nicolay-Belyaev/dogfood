@@ -29,7 +29,7 @@ export const Reset = () => {
 
     useEffect(() => {
         //TODO: переделать на уведомление если апи не отработал.
-        // Срабатывает при первом рендере, потому что initialState == {}
+        // Срабатывает else при первом рендере, потому что initialState == {}
         if (resetTokenResponse.message === "Письмо успешно отправлено") {
             setShowTokenField(true)}
         else {
