@@ -1,7 +1,6 @@
 import React, {useCallback, useContext, useEffect} from "react";
 import s from './index.module.scss'
 import {AppContext} from "../../context/appcontext";
-import {Login} from "../Auth/AuthModals/login";
 import {Register} from "../Auth/AuthModals/register";
 
 

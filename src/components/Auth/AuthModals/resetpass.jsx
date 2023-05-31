@@ -7,10 +7,16 @@ import {AppContext} from "../../../context/appcontext";
 export const ResetPass = () => {
     const {setModalChildren} = useContext(AppContext)
 
+    const userAlert = (apiResponse) => {
+        if (apiResponse.hasOwnProperty("message")) {
+            alert(apiResponse.message)
+        } else {
+            alert(`Пароль для пользователя с логином ${apiResponse.data.email} успешно изменен.`)
+        }
+    }
     const submitSequence = async (data) => {
-        await api.resetPassword(data, localStorage.getItem("dogfood_token")).then(
-            res => {alert(`Пароль для аккаунат ${res.email} успешно изменен`)}
-        )
+        const passwordResetApiResponse = await api.resetPassword(data, localStorage.getItem("dogfood_token"))
+        userAlert(passwordResetApiResponse)
         setModalChildren(<Login/>)
     }
 

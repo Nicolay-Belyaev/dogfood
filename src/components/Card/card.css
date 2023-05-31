@@ -24,7 +24,7 @@
   object-fit: contain;
   margin-bottom: 16px;
 }
-.cardcard__old-price {
+.card__old-price {
   font-size: 12px;
   position: absolute;
   top: 0;

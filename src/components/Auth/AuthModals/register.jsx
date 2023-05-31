@@ -1,20 +1,25 @@
-import React from "react";
+import React, {useContext} from "react";
 import {api} from "../../../utils/api";
 import {Login} from "./login";
 import {FormFields} from "../FormFields";
+import {AppContext} from "../../../context/appcontext";
 
 export const Register = () => {
-    const submitSequence = async (data) => {
-        try {
-            return await api.sighUp(data)
-        } catch (error) {
-            alert("Что-то пошло не так. Смотри консоль для подробностей.")
-            console.log(error)
+    const {setModalChildren} = useContext(AppContext)
+
+    const userAlert = (apiResponse) => {
+        if (apiResponse.hasOwnProperty("message")) {
+            alert(apiResponse.message)
+        } else {
+            sessionStorage.setItem('current_user_mail', apiResponse.email)
+            alert(`Пользователь c логинов ${apiResponse.email} успешно зарегистрирован.`)
+            setModalChildren(<Login/>)
         }
     }
-    const showPasswordFields = {
-        passwordInput: true,
-        passwordResetButton: false
+
+    const submitSequence = async (data) => {
+        const registerApiResponse = await api.sighUp(data)
+        userAlert(registerApiResponse)
     }
 
     return (
@@ -25,7 +30,10 @@ export const Register = () => {
                submitButtonText='Зарегистрироваться'
                changeModalFormButtonText = 'Войти'
                changeModalFormOn={<Login/>}
-               showPasswordFields={showPasswordFields}
+               showPasswordFields={{
+                   passwordInput: true,
+                   passwordResetButton: false
+               }}
            />
         </div>
     )

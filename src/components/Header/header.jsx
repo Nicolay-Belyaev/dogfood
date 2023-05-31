@@ -1,4 +1,4 @@
-import React, {memo, useContext} from "react";
+import React, {useContext} from "react";
 import "./header.scss"
 
 import {Logo} from "../Logo/logo";
@@ -12,7 +12,7 @@ import {AppContext} from "../../context/appcontext";
 
 
 export const Header = () => {
-    const {favorites, setSearch, setModalShow, user} = useContext(AppContext)
+    const {setSearch, setModalShow, favorites, user} = useContext(AppContext)
     const setSearchQuery = (searchRequest) => {
         setSearch(searchRequest)
     }

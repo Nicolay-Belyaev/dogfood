@@ -1,13 +1,11 @@
 import React, {useCallback, useEffect, useState} from "react";
-import {Navigate, Route, Routes} from "react-router";
 
 import {api} from "./utils/api";
-import {likedByCurrentUser, dateToTimestamp, productRating} from "./utils/utils";
+import {likedByCurrentUser, productRating} from "./utils/utils";
 
 import {Header} from "./components/Header/header";
 import {Footer} from "./components/Footer/footer";
 import {Modal} from "./components/Modal/modal";
-import {Login} from "./components/Auth/AuthModals/login";
 import {Routing} from "./components/Routing/routing";
 
 import {useDebounce} from "./hooks/hooks";
@@ -22,6 +20,7 @@ export function App() {
     const [search, setSearch] = useState(undefined);
     const [favorites, setFavorites] = useState([])
     const [modalChildren, setModalChildren] = useState(<Register/>)
+    const [isAuthorized, setIsAuthorized] = useState(false)
 
     const [modalShow, setModalShow] = useState(false)
     const debounceValueInApp = useDebounce(search, 350)
@@ -74,7 +73,7 @@ export function App() {
    }, [])
 
     const contextCarrier
-        = {handleLike, onSort, modalShow, setModalShow, setModalChildren, search, setSearch, user, favorites, cards};
+        = {setIsAuthorized, isAuthrozeid: isAuthorized, handleLike, onSort, modalShow, setModalShow, setModalChildren, search, setSearch, user, favorites, cards};
 
 
     return (

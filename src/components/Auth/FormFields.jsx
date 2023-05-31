@@ -34,16 +34,17 @@ export const FormFields = ({showEmailField = true, ...props}) => {
 
     return (
     <form className='login__form' onSubmit={handleSubmit(submitSequence)}>
-    <div className='login__inputs'>
+        <div className='login__inputs'>
 
         {showEmailField && <>
         <input
             className='login__form-input'
             type='text'
             placeholder='email'
+            value={sessionStorage.getItem('current_user_mail')}
             {...register('email', {...emailRequirements})}
         />
-        {errors?.email && <div className='error_message'>{errors.email.message}</div>}
+        {errors?.email && <div className='error_message__email'>{errors.email.message}</div>}
         </>}
 
         {showTokenField && <>
@@ -68,10 +69,10 @@ export const FormFields = ({showEmailField = true, ...props}) => {
             className='login__form-passToggler'>
             {type ? 'X' : 'O'}
         </span>
-        {errors?.password && <div className='error_message'>{errors.password.message}</div>}
+        {errors?.password && <div className='error_message__password'>{errors.password.message}</div>}
         </>}
 
-    </div>
+        </div>
         <div className='buttons'>
             {showPasswordFields.passwordResetButton && <div onClick={() => setModalChildren(<Reset/>)}>Восстановить пароль</div>}
             <button className='button__yellow' type='submit'>{submitButtonText}</button>

@@ -8,8 +8,8 @@
     align-items: flex-start;
     padding: 0px;
     gap: 8px;
-    margin-bottom: 50px;
-    margin-top: 15px;
+    margin-bottom: 100px;
+    margin-top: -20px;
 
     width: 356px;
     height: 104px;
@@ -127,4 +127,12 @@
   margin-top: 35px;
   display: flex;
   gap: 8px;
+}
+
+.error_message {
+  &__email {
+  }
+  &__password {
+    margin-top: -25px;
+  }
 }

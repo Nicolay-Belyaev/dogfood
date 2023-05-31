@@ -22,11 +22,6 @@ export const Reset = () => {
         }
     }
 
-    const showPasswordFields = {
-        passwordInput: false,
-        passwordResetButton: false
-    }
-
     useEffect(() => {
         //TODO: переделать на уведомление если апи не отработал.
         // Срабатывает else при первом рендере, потому что initialState == {}
@@ -45,7 +40,9 @@ export const Reset = () => {
                 submitButtonText='Отправить'
                 changeModalFormButtonText = 'Я вспомнил пароль'
                 changeModalFormOn={<Login/>}
-                showPasswordFields={showPasswordFields}
+                showPasswordFields={{
+                    passwordInput: false,
+                    passwordResetButton: false}}
                 showTokenField={showTokenField}/>
         </div>
         <span>Срок действия временного пароля 24 ч.</span>

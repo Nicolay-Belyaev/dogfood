@@ -1,5 +1,3 @@
-import {api} from "./api";
-
 export const likedByCurrentUser = (product, userId) => {
     return product.likes.some(e => e === userId)
 }
