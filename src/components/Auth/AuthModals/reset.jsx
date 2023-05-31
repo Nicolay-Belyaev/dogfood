@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useState} from "react";
 
 import {api} from "../../../utils/api";
 import {AppContext} from "../../../context/appcontext";
@@ -8,29 +8,33 @@ import {Login} from "./login";
 import {ResetPass} from "./resetpass";
 
 export const Reset = () => {
-    const [resetTokenResponse, setResetTokenResponse] = useState({})
     const [showTokenField, setShowTokenField] = useState(false)
     const {setModalChildren} = useContext(AppContext)
 
+    const userAlert = (apiResponse) => {
+        switch (apiResponse.message) {
+            case "На сервере произошла ошибка":
+                alert(`${apiResponse.message}. Скорее всего вы ошиблись в email.`)
+                return false
+            case "Письмо успешно отправлено":
+                alert(apiResponse.message)
+                return true
+            default:
+                alert("На сервере произошло что-то непредвиденное.")
+                break
+        }
+    }
+
     const submitSequence = async (data) => {
         if (data.token === undefined) {
-            setResetTokenResponse(await api.resetToken(data))
+            const tokenResetApiResponse = await api.resetToken(data)
+            setShowTokenField(userAlert(tokenResetApiResponse))
         }
         else {
             localStorage.setItem("dogfood_token", data.token)
             setModalChildren(<ResetPass />)
         }
     }
-
-    useEffect(() => {
-        //TODO: переделать на уведомление если апи не отработал.
-        // Срабатывает else при первом рендере, потому что initialState == {}
-        if (resetTokenResponse.message === "Письмо успешно отправлено") {
-            setShowTokenField(true)}
-        else {
-            console.log(("Что-то пошло не так. возможно указана неправильная почта"))
-        }
-    }, [resetTokenResponse])
 
     return (<>
         <div className='login'>
