@@ -2,12 +2,9 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {api} from "../../utils/api";
 
 const initialState = {
-    data: [],
+    data: {},
     loading: false
 }
-
-const Loading = (data) => {return data.type.endsWith("pending")}
-const Error = (data) => {return data.type.endsWith("rejected")}
 
 export const getCards = createAsyncThunk(
     "getCards",
@@ -16,6 +13,8 @@ export const getCards = createAsyncThunk(
     }
 )
 
+const Loading = (data) => {return data.type.endsWith("pending")}
+const Error = (data) => {return data.type.endsWith("rejected")}
 
 const cardsSlice = createSlice({
     name: "cards",

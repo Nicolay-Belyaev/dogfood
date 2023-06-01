@@ -19,8 +19,8 @@ import {getCards} from "./storage/slices/cardsSlice";
 
 export function App() {
     const {data: userData} = useSelector((state) => state.user)
-    const {data: cards1} = useSelector((state) => state.cards)
-    const [cards, setCards] = useState([]);
+    const cards = useSelector((state) => state.cards.data.products)
+    console.log(cards)
     const [search, setSearch] = useState(undefined);
     const [favorites, setFavorites] = useState([])
     const [modalChildren, setModalChildren] = useState(<Register/>)
@@ -30,56 +30,58 @@ export function App() {
     const debounceValueInApp = useDebounce(search, 350)
     const dispatch = useDispatch()
 
-    const handleLike = useCallback(async (product, wasLiked) => {
-        const updatedCard = await api.changeLike(product._id, wasLiked);
-        setCards(s => [...s.map(e => e._id === updatedCard?._id ? updatedCard : e)]);
-
-        wasLiked ?
-            setFavorites((prevState) => prevState.filter(f => f._id !== updatedCard._id))
-            :
-            setFavorites((prevState) => [updatedCard, ...prevState])
-        return wasLiked;
-    }, [])
-
-    const onSort = (sortKey) => {
-        switch (sortKey) {
-            case POPULAR:
-                return setCards([...cards.sort((a, b) => b.likes.length - a.likes.length)])
-            case CHEAPEST:
-                return setCards([...cards.sort((a, b) => a.price - b.price)])
-            case EXPENSIVE:
-                return setCards([...cards.sort((a, b) => b.price - a.price)])
-            case NEWEST:
-                return setCards([...cards.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))])
-            case SALE:
-                return setCards([...cards.sort((a, b) => b.discount - a.discount)])
-            case RATE:
-                return setCards([...cards.sort((a, b) => productRating(b) - productRating(a))])
-            default:
-                break;
-        }
-    }
-
     useEffect(() => {
         dispatch(getUser())
         dispatch(getCards())
     }, [dispatch])
 
-    useEffect(() => {
-        if(!userData?._id) return
-        const fav = cards1.products.filter(e => likedByCurrentUser(e, userData._id))
-        setFavorites(fav)
-    }, [dispatch, userData._id])
 
-    useEffect(() => {
-        if (debounceValueInApp === undefined) return;
-        api.searchProduct(debounceValueInApp)
-            .then((data) => setCards(data))
-    }, [debounceValueInApp])
+    // const handleLike = useCallback(async (product, wasLiked) => {
+    //     const updatedCard = await api.changeLike(product._id, wasLiked);
+    //     setCards(s => [...s.map(e => e._id === updatedCard?._id ? updatedCard : e)]);
+    //
+    //     wasLiked ?
+    //         setFavorites((prevState) => prevState.filter(f => f._id !== updatedCard._id))
+    //         :
+    //         setFavorites((prevState) => [updatedCard, ...prevState])
+    //     return wasLiked;
+    // }, [])
+
+    // const onSort = (sortKey) => {
+    //     switch (sortKey) {
+    //         case POPULAR:
+    //             return setCards([...cards.sort((a, b) => b.likes.length - a.likes.length)])
+    //         case CHEAPEST:
+    //             return setCards([...cards.sort((a, b) => a.price - b.price)])
+    //         case EXPENSIVE:
+    //             return setCards([...cards.sort((a, b) => b.price - a.price)])
+    //         case NEWEST:
+    //             return setCards([...cards.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))])
+    //         case SALE:
+    //             return setCards([...cards.sort((a, b) => b.discount - a.discount)])
+    //         case RATE:
+    //             return setCards([...cards.sort((a, b) => productRating(b) - productRating(a))])
+    //         default:
+    //             break;
+    //     }
+    // }
+
+
+    // useEffect(() => {
+    //     if(!userData?._id) return
+    //     const fav = cards.filter(e => likedByCurrentUser(e, userData._id))
+    //     setFavorites(fav)
+    // }, [dispatch, userData._id])
+    //
+    // useEffect(() => {
+    //     if (debounceValueInApp === undefined) return;
+    //     api.searchProduct(debounceValueInApp)
+    //         .then((data) => setCards(data))
+    // }, [debounceValueInApp])
 
 
     const contextCarrier
-        = {setIsAuthorized, isAuthorized, handleLike, onSort, modalShow, setModalShow, setModalChildren, search, setSearch, favorites, cards};
+        = {setIsAuthorized, isAuthorized, modalShow, setModalShow, setModalChildren, search, setSearch, favorites};
 
 
     return (

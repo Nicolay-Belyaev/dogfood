@@ -5,9 +5,11 @@ import {Cardlist} from "../../components/CardList/cardlist";
 import {AppContext} from "../../context/appcontext";
 import {CHEAPEST, EXPENSIVE, NEWEST, POPULAR, SALE, RATE} from "../../constants/constants";
 import {changeWordEnd} from "../../utils/utils";
+import {useSelector} from "react-redux";
 
 export const CatalogPage = () => {
-    const {cards, search, onSort } = useContext(AppContext)
+    const {search, onSort } = useContext(AppContext)
+    const cards = useSelector((state) => state.cards.data.products)
 
     const sortedItems = [
         {id: POPULAR, title: 'Популярные'},
