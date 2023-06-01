@@ -1,4 +1,5 @@
 import React, {useCallback, useEffect, useState} from "react";
+import {useDispatch, useSelector} from "react-redux"
 
 import {api} from "./utils/api";
 import {likedByCurrentUser, productRating} from "./utils/utils";
@@ -13,9 +14,12 @@ import {AppContext} from "./context/appcontext";
 
 import {CHEAPEST, EXPENSIVE, NEWEST, POPULAR, SALE, RATE} from "./constants/constants";
 import {Register} from "./components/Auth/AuthModals/register";
+import {getUser} from "./storage/slices/userSlice";
+import {getCards} from "./storage/slices/cardsSlice";
 
 export function App() {
-    const [user, setUser] = useState({})
+    const {data: userData} = useSelector((state) => state.user)
+    const {data: cards1} = useSelector((state) => state.cards)
     const [cards, setCards] = useState([]);
     const [search, setSearch] = useState(undefined);
     const [favorites, setFavorites] = useState([])
@@ -24,6 +28,7 @@ export function App() {
 
     const [modalShow, setModalShow] = useState(false)
     const debounceValueInApp = useDebounce(search, 350)
+    const dispatch = useDispatch()
 
     const handleLike = useCallback(async (product, wasLiked) => {
         const updatedCard = await api.changeLike(product._id, wasLiked);
@@ -39,21 +44,32 @@ export function App() {
     const onSort = (sortKey) => {
         switch (sortKey) {
             case POPULAR:
-                return setCards(prevState => [...cards.sort((a, b) => b.likes.length - a.likes.length)])
+                return setCards([...cards.sort((a, b) => b.likes.length - a.likes.length)])
             case CHEAPEST:
-                return setCards(prevState => [...cards.sort((a, b) => a.price - b.price)])
+                return setCards([...cards.sort((a, b) => a.price - b.price)])
             case EXPENSIVE:
-                return setCards(prevState => [...cards.sort((a, b) => b.price - a.price)])
+                return setCards([...cards.sort((a, b) => b.price - a.price)])
             case NEWEST:
-                return setCards(prevState => [...cards.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))])
+                return setCards([...cards.sort((a, b) => new Date(b.created_at) - new Date(a.created_at))])
             case SALE:
-                return setCards(prevState => [...cards.sort((a, b) => b.discount - a.discount)])
+                return setCards([...cards.sort((a, b) => b.discount - a.discount)])
             case RATE:
-                return setCards(prevState => [...cards.sort((a, b) => productRating(b) - productRating(a))])
+                return setCards([...cards.sort((a, b) => productRating(b) - productRating(a))])
             default:
                 break;
         }
     }
+
+    useEffect(() => {
+        dispatch(getUser())
+        dispatch(getCards())
+    }, [dispatch])
+
+    useEffect(() => {
+        if(!userData?._id) return
+        const fav = cards1.products.filter(e => likedByCurrentUser(e, userData._id))
+        setFavorites(fav)
+    }, [dispatch, userData._id])
 
     useEffect(() => {
         if (debounceValueInApp === undefined) return;
@@ -61,19 +77,9 @@ export function App() {
             .then((data) => setCards(data))
     }, [debounceValueInApp])
 
-   useEffect(() => {
-       Promise.all([api.getProductList(), api.getUserInfo()])
-           .then(([productData,
-                   userData]) => {
-               setUser(userData);
-               setCards(productData.products)
-               const likedCards = productData.products.filter(e => likedByCurrentUser(e, userData._id))
-               setFavorites((likedCards))
-           }).catch((reject) => {console.log(reject.json)})
-   }, [])
 
     const contextCarrier
-        = {setIsAuthorized, isAuthrozeid: isAuthorized, handleLike, onSort, modalShow, setModalShow, setModalChildren, search, setSearch, user, favorites, cards};
+        = {setIsAuthorized, isAuthorized, handleLike, onSort, modalShow, setModalShow, setModalChildren, search, setSearch, favorites, cards};
 
 
     return (

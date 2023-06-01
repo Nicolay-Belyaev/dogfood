@@ -11,10 +11,11 @@ import {BaseButton} from "../Buttons/BaseButton/basebutton";
 import {ReactComponent as Like} from "../Resourses/img/like.svg";
 import {ReactComponent as Truck} from "../Resourses/img/truck.svg";
 import {Reviews} from "../Reviews/reviews";
+import {useSelector} from "react-redux";
 
 export const Product = ({product, onProductLike, sendReview, onDeleteReview}) => {
     const [isProductLiked, setIsProductLiked] = useState(false)
-    const {user} = useContext(AppContext)
+    const user = useSelector((state) => state.user.data)
 
     const getDiscountPrice = (discount, price) => {
         return (price - Math.floor(price * discount / 100)).toFixed(0)

@@ -4,9 +4,11 @@ import "./card.scss";
 import { ReactComponent as Like } from "../Resourses/img/like.svg";
 import {Link} from "react-router-dom";
 import {AppContext} from "../../context/appcontext";
+import {useSelector} from "react-redux";
 
 export const Card = ({ discount, pictures, image, price, name, wight, tags, likes, product }) => {
-    const {user, handleLike} = useContext(AppContext)
+    const user = useSelector((state) => state.user.data)
+    const {handleLike} = useContext(AppContext)
     const isLiked = likes.some(e => e === user._id)
     const handleClick = () => {
         handleLike(product, isLiked)

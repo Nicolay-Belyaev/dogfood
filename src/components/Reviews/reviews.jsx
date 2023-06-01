@@ -6,6 +6,7 @@ import {useForm} from "react-hook-form";
 import {AppContext} from "../../context/appcontext";
 import {BaseButton} from "../Buttons/BaseButton/basebutton";
 import {ReactComponent as Basket} from "../Resourses/img/basket.svg";
+import {useSelector} from "react-redux";
 
 const timeOptions = {
     day: 'numeric',
@@ -17,7 +18,7 @@ export const Reviews = ({reviews, onSendReview, onDeleteReview}) => {
     const [rate, setRate] = useState()
 
     const {register, handleSubmit, reset} = useForm({mode: "onBlur"})
-    const {user} = useContext(AppContext)
+    const user = useSelector((state) => state.user.data)
 
     const reviewRegister = {
         required: {

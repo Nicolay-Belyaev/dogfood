@@ -1,4 +1,5 @@
 import React, {useContext} from "react";
+import {useSelector} from "react-redux";
 import "./header.scss"
 
 import {Logo} from "../Logo/logo";
@@ -11,8 +12,10 @@ import {ReactComponent as Profile} from '../Resourses/img/profile.svg';
 import {AppContext} from "../../context/appcontext";
 
 
+
 export const Header = () => {
-    const {setSearch, setModalShow, favorites, user} = useContext(AppContext)
+    const user = useSelector((state) => state.user.data)
+    const {setSearch, setModalShow, favorites} = useContext(AppContext)
     const setSearchQuery = (searchRequest) => {
         setSearch(searchRequest)
     }

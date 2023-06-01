@@ -3,11 +3,13 @@ import {Product} from "../../components/Product/product";
 import {api} from "../../utils/api";
 import {useParams} from "react-router";
 import {AppContext} from "../../context/appcontext";
+import {useSelector} from "react-redux";
 
 export const ProductPage = () => {
     const [product, setProduct] = useState({});
     const {id } = useParams();
-    const {user, handleLike} = useContext(AppContext);
+    const {handleLike} = useContext(AppContext);
+    const user = useSelector((state) => state.user.data)
 
     useEffect(() => {
         if (id) {

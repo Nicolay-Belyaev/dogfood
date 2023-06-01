@@ -2,25 +2,26 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 import {api} from "../../utils/api";
 
 const initialState = {
-    data: {},
+    data: [],
     loading: false
 }
-export const getUser = createAsyncThunk(
-    "getUser",
-    async function() {
-        return await api.getUserInfo()
-        }
-    )
-
-const Error = (data) => {return data.type.endsWith("rejected")}
 
 const Loading = (data) => {return data.type.endsWith("pending")}
+const Error = (data) => {return data.type.endsWith("rejected")}
 
-const userSlice = createSlice({
-    name: "user",
+export const getCards = createAsyncThunk(
+    "getCards",
+    async function() {
+        return await api.getProductList()
+    }
+)
+
+
+const cardsSlice = createSlice({
+    name: "cards",
     initialState: initialState,
     extraReducers: (builder) => {
-        builder.addCase(getUser.fulfilled, (state, action) => {
+        builder.addCase(getCards.fulfilled, (state, action) => {
             state.data = action.payload
             state.loading = false
         })
@@ -34,4 +35,4 @@ const userSlice = createSlice({
     }
 })
 
-export default userSlice.reducer
+export default cardsSlice.reducer
