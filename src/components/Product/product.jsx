@@ -1,8 +1,7 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import cn from "classnames";
 
 import s from './index.module.scss'
-import {AppContext} from "../../context/appcontext";
 
 import {BackButton} from "../Buttons/BackButton/backbutton";
 import {Rating} from "../Rating/rating";

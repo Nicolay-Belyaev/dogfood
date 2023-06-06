@@ -6,10 +6,11 @@ import {ReactComponent as Like} from "../../components/Resourses/img/like.svg";
 import {AppContext} from "../../context/appcontext";
 import './favoritepage.css'
 import {Link} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 
 export const FavoritePage = () => {
-    const {favorites} = useContext(AppContext)
+    const favorites = useSelector((state) => state.cards.favorites)
 
     return (
         <div className='favorites_container'>

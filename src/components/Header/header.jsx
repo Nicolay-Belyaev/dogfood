@@ -15,7 +15,8 @@ import {AppContext} from "../../context/appcontext";
 
 export const Header = () => {
     const user = useSelector((state) => state.user.data)
-    const {setSearch, setModalShow, favorites} = useContext(AppContext)
+    const favorites = useSelector((state) => state.cards.favorites)
+    const {setSearch, setModalShow} = useContext(AppContext)
     const setSearchQuery = (searchRequest) => {
         setSearch(searchRequest)
     }

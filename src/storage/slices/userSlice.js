@@ -20,16 +20,16 @@ const userSlice = createSlice({
     name: "user",
     initialState: initialState,
     extraReducers: (builder) => {
-        builder.addCase(getUser.fulfilled, (state, action) => {
-            state.data = action.payload
+        builder.addCase(getUser.fulfilled, (state, {payload}) => {
+            state.data = payload
             state.loading = false
         })
-        builder.addMatcher(Loading, (state, action) => {
+        builder.addMatcher(Loading, (state) => {
             state.loading = true
         })
-        builder.addMatcher(Error, (state, action) => {
+        builder.addMatcher(Error, (state, {payload}) => {
             state.loading = false
-            state.error = action.payload
+            state.error = payload
         })
     }
 })

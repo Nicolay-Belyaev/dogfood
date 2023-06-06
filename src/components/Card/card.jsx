@@ -3,16 +3,18 @@ import "./card.scss";
 
 import { ReactComponent as Like } from "../Resourses/img/like.svg";
 import {Link} from "react-router-dom";
-import {AppContext} from "../../context/appcontext";
-import {useSelector} from "react-redux";
+
+import {useDispatch, useSelector} from "react-redux";
+import {changeProductLike} from "../../storage/slices/cardsSlice";
 
 export const Card = ({ discount, pictures, image, price, name, wight, tags, likes, product }) => {
+    const dispatch = useDispatch()
     const user = useSelector((state) => state.user.data)
-    const {handleLike} = useContext(AppContext)
-    const isLiked = likes.some(e => e === user._id)
     const handleClick = () => {
-        handleLike(product, isLiked)
+        dispatch(changeProductLike({ product: product, wasLiked: isLiked }))
     }
+    const isLiked = likes.some(e => e === user._id)
+
 
     return (
         <div className='card'>

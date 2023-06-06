@@ -5,25 +5,27 @@ import {Cardlist} from "../../components/CardList/cardlist";
 import {AppContext} from "../../context/appcontext";
 import {CHEAPEST, EXPENSIVE, NEWEST, POPULAR, SALE, RATE} from "../../constants/constants";
 import {changeWordEnd} from "../../utils/utils";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {sortProducts} from '../../storage/slices/cardsSlice'
+
+const sortedItems = [
+    {id: POPULAR, title: 'Популярные'},
+    {id: CHEAPEST, title: 'Сначала дешевые'},
+    {id: EXPENSIVE, title: 'Сначала дорогие'},
+    {id: NEWEST, title: 'Новинки'},
+    {id: SALE, title: 'Распродажа'},
+    {id: RATE, title: 'По рейтингу'}
+]
 
 export const CatalogPage = () => {
-    const {search, onSort } = useContext(AppContext)
-    const cards = useSelector((state) => state.cards.data.products)
-
-    const sortedItems = [
-        {id: POPULAR, title: 'Популярные'},
-        {id: CHEAPEST, title: 'Сначала дешевые'},
-        {id: EXPENSIVE, title: 'Сначала дорогие'},
-        {id: NEWEST, title: 'Новинки'},
-        {id: SALE, title: 'Распродажа'},
-        {id: RATE, title: 'По рейтингу'}
-    ]
+    const {search} = useContext(AppContext)
+    const cards = useSelector((state) => state.cards.products)
+    const dispatch = useDispatch()
 
     return (
         <>
            <div className='sort-cards'>
-                {sortedItems.map(e => <span className='sort-item' key={e.id} onClick={()=>onSort(e.id)}>{e.title} </span>)}
+                {sortedItems.map(e => <span className='sort-item' key={e.id} onClick={()=>dispatch(sortProducts(e.id))}>{e.title}</span>)}
            </div>
            {search &&
                <p className='search'>
