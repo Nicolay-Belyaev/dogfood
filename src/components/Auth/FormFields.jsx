@@ -1,7 +1,9 @@
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
+import {useDispatch} from "react-redux";
 import {useForm} from "react-hook-form";
+
+import {changeModalChilder} from "../../storage/slices/modalSlice";
 import {Reset} from "./AuthModals/reset";
-import {AppContext} from "../../context/appcontext";
 
 const emailRequirements = {
     required: {
@@ -27,7 +29,7 @@ const passwordRequirements = {
 
 export const FormFields = ({showEmailField = true, ...props}) => {
     const {showTokenField, submitSequence, submitButtonText, showPasswordFields, changeModalFormButtonText, changeModalFormOn} = props
-    const {setModalChildren} = useContext(AppContext)
+    const dispatch = useDispatch()
     const {handleSubmit, register, formState: {errors}} = useForm({mode: 'onBlur'})
 
     const [type, setType] = useState(true)
@@ -41,7 +43,6 @@ export const FormFields = ({showEmailField = true, ...props}) => {
             className='login__form-input'
             type='text'
             placeholder='email'
-            value={sessionStorage.getItem('current_user_mail')}
             {...register('email', {...emailRequirements})}
         />
         {errors?.email && <div className='error_message__email'>{errors.email.message}</div>}
@@ -74,9 +75,9 @@ export const FormFields = ({showEmailField = true, ...props}) => {
 
         </div>
         <div className='buttons'>
-            {showPasswordFields.passwordResetButton && <div onClick={() => setModalChildren(<Reset/>)}>Восстановить пароль</div>}
+            {showPasswordFields.passwordResetButton && <div onClick={() => dispatch(changeModalChilder(<Reset/>))}>Восстановить пароль</div>}
             <button className='button__yellow' type='submit'>{submitButtonText}</button>
-            <button className='button__blank' onClick={() => setModalChildren(changeModalFormOn)}>{changeModalFormButtonText}</button>
+            <button className='button__blank' onClick={() => dispatch(changeModalChilder(changeModalFormOn))}>{changeModalFormButtonText}</button>
         </div>
     </form>
     )

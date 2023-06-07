@@ -1,11 +1,14 @@
-import React, {useContext} from "react";
+import React from "react";
+import {useDispatch} from "react-redux";
+
 import {api} from "../../../utils/api";
+import {changeModalChilder} from "../../../storage/slices/modalSlice";
+
 import {FormFields} from "../FormFields";
 import {Login} from "./login";
-import {AppContext} from "../../../context/appcontext";
 
 export const ResetPass = () => {
-    const {setModalChildren} = useContext(AppContext)
+    const dispatch = useDispatch()
 
     const userAlert = (apiResponse) => {
         if (apiResponse.hasOwnProperty("message")) {
@@ -17,13 +20,9 @@ export const ResetPass = () => {
     const submitSequence = async (data) => {
         const passwordResetApiResponse = await api.resetPassword(data, localStorage.getItem("dogfood_token"))
         userAlert(passwordResetApiResponse)
-        setModalChildren(<Login/>)
+        dispatch(changeModalChilder(<Login/>))
     }
 
-    const showPasswordFields = {
-        passwordInput: true,
-        passwordResetButton: false
-    }
     return (<>
         <div className='login'>
             <h3 className='_header'>Восстановление пароля</h3>
@@ -32,8 +31,11 @@ export const ResetPass = () => {
                 submitButtonText='Отправить'
                 changeModalFormButtonText = 'Я вспомнил пароль'
                 changeModalFormOn={<Login/>}
-                showPasswordFields={showPasswordFields}
                 showEmailField = {false}/>
+                showPasswordFields={{
+                    passwordInput: true,
+                    passwordResetButton: false
+                }}
         </div>
     </>)
 }

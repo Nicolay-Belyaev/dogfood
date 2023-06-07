@@ -22,8 +22,7 @@ export const CatalogPage = () => {
     const cards = useSelector((state) => state.cards.products)
     const dispatch = useDispatch()
 
-    return (
-        <>
+    return (<>
            <div className='sort-cards'>
                 {sortedItems.map(e => <span className='sort-item' key={e.id} onClick={()=>dispatch(sortProducts(e.id))}>{e.title}</span>)}
            </div>
@@ -32,7 +31,5 @@ export const CatalogPage = () => {
                    По запросу <b>{search}</b> {cards.length === 1 ? 'найден' : 'найдено'} <b>{cards.length}</b>{changeWordEnd(cards.length, 'товар')}.
                </p>}
             <Cardlist cards={cards} />
-        </>
-
-    )
+        </>)
 }

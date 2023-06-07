@@ -1,15 +1,18 @@
-import React, {useCallback, useContext, useEffect} from "react";
+import React, {useCallback, useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import s from './index.module.scss'
-import {AppContext} from "../../context/appcontext";
+
+import {changeModalChilder, changeModalShow} from "../../storage/slices/modalSlice";
 import {Register} from "../Auth/AuthModals/register";
 
-
-export const Modal = ({ children }) => {
-    const {modalShow, setModalShow, setModalChildren} = useContext(AppContext)
+export const Modal = () => {
+    const modalShow = useSelector(state => state.modal.modalShow)
+    const children = useSelector(state => state.modal.modalChildren)
+    const dispatch = useDispatch()
 
     const escapeSequence = () => {
-        setModalChildren(<Register/>)
-        setModalShow(false)
+        dispatch(changeModalChilder(<Register/>))
+        dispatch(changeModalShow(false))
     }
     const escapeClose = useCallback((event) => {
         if (event.key === 'Escape') {

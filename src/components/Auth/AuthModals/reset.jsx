@@ -1,7 +1,8 @@
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
+import {useDispatch} from "react-redux";
 
 import {api} from "../../../utils/api";
-import {AppContext} from "../../../context/appcontext";
+import {changeModalChilder} from "../../../storage/slices/modalSlice";
 
 import {FormFields} from "../FormFields";
 import {Login} from "./login";
@@ -9,7 +10,7 @@ import {ResetPass} from "./resetpass";
 
 export const Reset = () => {
     const [showTokenField, setShowTokenField] = useState(false)
-    const {setModalChildren} = useContext(AppContext)
+    const dispatch = useDispatch()
 
     const userAlert = (apiResponse) => {
         switch (apiResponse.message) {
@@ -32,7 +33,7 @@ export const Reset = () => {
         }
         else {
             localStorage.setItem("dogfood_token", data.token)
-            setModalChildren(<ResetPass />)
+            dispatch(changeModalChilder(<ResetPass/>))
         }
     }
 

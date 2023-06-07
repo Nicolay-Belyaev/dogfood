@@ -1,19 +1,21 @@
-import React, {useContext} from "react";
+import React from "react";
+import {useDispatch} from "react-redux";
+
 import {api} from "../../../utils/api";
-import {Login} from "./login";
+import {changeModalChilder} from "../../../storage/slices/modalSlice";
+
 import {FormFields} from "../FormFields";
-import {AppContext} from "../../../context/appcontext";
+import {Login} from "./login";
 
 export const Register = () => {
-    const {setModalChildren} = useContext(AppContext)
+    const dispatch = useDispatch()
 
     const userAlert = (apiResponse) => {
         if (apiResponse.hasOwnProperty("message")) {
             alert(apiResponse.message)
         } else {
-            sessionStorage.setItem('current_user_mail', apiResponse.email)
             alert(`Пользователь c логинов ${apiResponse.email} успешно зарегистрирован.`)
-            setModalChildren(<Login/>)
+            dispatch(changeModalChilder(<Login/>))
         }
     }
 

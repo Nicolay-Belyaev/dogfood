@@ -1,5 +1,5 @@
 import React, {useContext} from "react";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import "./header.scss"
 
 import {Logo} from "../Logo/logo";
@@ -10,12 +10,14 @@ import {ReactComponent as Basket} from '../Resourses/img/cart.svg';
 import {ReactComponent as Like} from '../Resourses/img/like.svg';
 import {ReactComponent as Profile} from '../Resourses/img/profile.svg';
 import {AppContext} from "../../context/appcontext";
+import {changeModalShow} from "../../storage/slices/modalSlice";
 
 
 
 export const Header = () => {
     const user = useSelector((state) => state.user.data)
     const favorites = useSelector((state) => state.cards.favorites)
+    const dispatch = useDispatch()
     const {setSearch, setModalShow} = useContext(AppContext)
     const setSearchQuery = (searchRequest) => {
         setSearch(searchRequest)
@@ -37,7 +39,7 @@ export const Header = () => {
                         </Link>
                         <Basket className='header__icon' />
                         {/*TODO: следующий линк должен будет вести на регистрацию/авторизацию или в профиль для авторизованных пользователей*/}
-                        <Link to={'/'} onClick={() => setModalShow(true)}>
+                        <Link to={'/'} onClick={() => dispatch(changeModalShow(true))}>
                             <Profile className='header__icon' />
                         </Link>
                     </div>
