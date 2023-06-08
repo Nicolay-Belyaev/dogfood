@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect, useState} from "react";
-import {ReactComponent as Star} from "../Resourses/img/star.svg";
 import cn from 'classnames';
 import s from './index.module.scss';
+import {ReactComponent as Star} from "../Resourses/img/star.svg";
 
 const emptyCells = new Array(5).fill(<></>)
 

@@ -1,16 +1,16 @@
 import React, {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
 import cn from "classnames";
-
 import s from './index.module.scss'
 
-import {BackButton} from "../Buttons/BackButton/backbutton";
 import {Rating} from "../Rating/rating";
-import {changeWordEnd, productRating} from "../../utils/utils";
+import {Reviews} from "../Reviews/reviews";
+import {BackButton} from "../Buttons/BackButton/backbutton";
 import {BaseButton} from "../Buttons/BaseButton/basebutton";
+import {changeWordEnd, productRating} from "../../utils/utils";
+
 import {ReactComponent as Like} from "../Resourses/img/like.svg";
 import {ReactComponent as Truck} from "../Resourses/img/truck.svg";
-import {Reviews} from "../Reviews/reviews";
-import {useSelector} from "react-redux";
 
 export const Product = ({product, onProductLike, sendReview, onDeleteReview}) => {
     const [isProductLiked, setIsProductLiked] = useState(false)

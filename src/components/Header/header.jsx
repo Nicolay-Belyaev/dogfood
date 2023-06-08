@@ -1,28 +1,37 @@
-import React, {useContext} from "react";
+import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
+import {useDebounce} from "../../hooks/hooks";
+import {Link} from "react-router-dom";
 import "./header.scss"
+
+import {changeModalShow} from "../../storage/slices/modalSlice";
+import {searchProductByRequest} from "../../storage/slices/cardsSlice";
+import {changeSearchRequest} from "../../storage/slices/searchSlice";
 
 import {Logo} from "../Logo/logo";
 import {Search} from "../Search/search";
 import {useLocation} from "react-router";
-import {Link} from "react-router-dom";
+
 import {ReactComponent as Basket} from '../Resourses/img/cart.svg';
 import {ReactComponent as Like} from '../Resourses/img/like.svg';
 import {ReactComponent as Profile} from '../Resourses/img/profile.svg';
-import {AppContext} from "../../context/appcontext";
-import {changeModalShow} from "../../storage/slices/modalSlice";
-
-
 
 export const Header = () => {
     const user = useSelector((state) => state.user.data)
     const favorites = useSelector((state) => state.cards.favorites)
+    const search = useSelector(state => state.search.searchRequest)
     const dispatch = useDispatch()
-    const {setSearch, setModalShow} = useContext(AppContext)
+    const debounceValueInHeader = useDebounce(search, 350)
+
     const setSearchQuery = (searchRequest) => {
-        setSearch(searchRequest)
+        dispatch(changeSearchRequest(searchRequest))
     }
     const location = useLocation()
+
+    useEffect(() => {
+        if (debounceValueInHeader === undefined) return;
+        dispatch(searchProductByRequest(debounceValueInHeader))
+    }, [debounceValueInHeader, dispatch])
 
     return (
         <div className="header">

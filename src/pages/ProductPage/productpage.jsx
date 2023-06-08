@@ -1,9 +1,10 @@
 import React, {useCallback, useEffect, useState} from "react";
-import {Product} from "../../components/Product/product";
-import {api} from "../../utils/api";
-import {useParams} from "react-router";
 import {useDispatch, useSelector} from "react-redux";
+import {useParams} from "react-router";
+
+import {api} from "../../utils/api";
 import {changeProductLike} from "../../storage/slices/cardsSlice";
+import {Product} from "../../components/Product/product";
 
 export const ProductPage = () => {
     const [product, setProduct] = useState({});
@@ -41,12 +42,10 @@ export const ProductPage = () => {
     }, [product._id])
 
 
-    return (
-        <>
-            {!!Object.keys(product).length ?
-                <Product product={product} onProductLike={onProductLike} sendReview={sendReview} onDeleteReview={onDeleteReview} />
-                :
-                <div>Loading...</div>}
-        </>
-    )
+    return (<>
+                {!!Object.keys(product).length ?
+                    <Product product={product} onProductLike={onProductLike} sendReview={sendReview} onDeleteReview={onDeleteReview} />
+                    :
+                    <div>Loading...</div>}
+            </>)
 }

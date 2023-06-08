@@ -24,19 +24,17 @@ export const Register = () => {
         userAlert(registerApiResponse)
     }
 
-    return (
-        <div className='login'>
-            <h3 className='_header'>Регистрация</h3>
-           <FormFields
-               submitSequence={submitSequence}
-               submitButtonText='Зарегистрироваться'
-               changeModalFormButtonText = 'Войти'
-               changeModalFormOn={<Login/>}
-               showPasswordFields={{
-                   passwordInput: true,
-                   passwordResetButton: false
-               }}
-           />
-        </div>
-    )
+    return (<div className='login'>
+                <h3 className='_header'>Регистрация</h3>
+                    <FormFields
+                       submitSequence={submitSequence}
+                       submitButtonText='Зарегистрироваться'
+                       changeModalFormButtonText = 'Войти'
+                       changeModalFormOn={<Login/>}
+                       showPasswordFields={{
+                           passwordInput: true,
+                           passwordResetButton: false
+                       }}
+                    />
+            </div>)
 }

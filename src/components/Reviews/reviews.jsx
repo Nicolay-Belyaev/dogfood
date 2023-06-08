@@ -1,12 +1,11 @@
-import React, {useContext, useState} from "react";
+import React, {useState} from "react";
+import {useSelector} from "react-redux";
+import {useForm} from "react-hook-form";
 import s from "./index.module.scss"
 
 import {Rating} from "../Rating/rating";
-import {useForm} from "react-hook-form";
-import {AppContext} from "../../context/appcontext";
 import {BaseButton} from "../Buttons/BaseButton/basebutton";
 import {ReactComponent as Basket} from "../Resourses/img/basket.svg";
-import {useSelector} from "react-redux";
 
 const timeOptions = {
     day: 'numeric',

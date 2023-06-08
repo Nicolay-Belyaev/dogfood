@@ -1,5 +1,6 @@
 import React from "react";
 import {Route, Routes} from "react-router";
+
 import {CatalogPage} from "../../pages/CatalogPage/catalogpage";
 import {ProductPage} from "../../pages/ProductPage/productpage";
 import {FavoritePage} from "../../pages/FavoritePage/favoritepage";

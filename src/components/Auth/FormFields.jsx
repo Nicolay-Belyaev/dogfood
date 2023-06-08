@@ -28,10 +28,9 @@ const passwordRequirements = {
 }
 
 export const FormFields = ({showEmailField = true, ...props}) => {
-    const {showTokenField, submitSequence, submitButtonText, showPasswordFields, changeModalFormButtonText, changeModalFormOn} = props
     const dispatch = useDispatch()
+    const {showTokenField, submitSequence, submitButtonText, showPasswordFields, changeModalFormButtonText, changeModalFormOn} = props
     const {handleSubmit, register, formState: {errors}} = useForm({mode: 'onBlur'})
-
     const [type, setType] = useState(true)
 
     return (

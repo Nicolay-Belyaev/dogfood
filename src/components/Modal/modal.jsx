@@ -6,9 +6,9 @@ import {changeModalChilder, changeModalShow} from "../../storage/slices/modalSli
 import {Register} from "../Auth/AuthModals/register";
 
 export const Modal = () => {
+    const dispatch = useDispatch()
     const modalShow = useSelector(state => state.modal.modalShow)
     const children = useSelector(state => state.modal.modalChildren)
-    const dispatch = useDispatch()
 
     const escapeSequence = () => {
         dispatch(changeModalChilder(<Register/>))
@@ -34,6 +34,5 @@ export const Modal = () => {
                     <div className={s.modal__close} onClick={escapeSequence}>X</div>
                     {children}
                 </div>
-            </div>
-            )
+            </div>)
 }

@@ -24,18 +24,18 @@ export const ResetPass = () => {
     }
 
     return (<>
-        <div className='login'>
-            <h3 className='_header'>Восстановление пароля</h3>
-            <FormFields
-                submitSequence={submitSequence}
-                submitButtonText='Отправить'
-                changeModalFormButtonText = 'Я вспомнил пароль'
-                changeModalFormOn={<Login/>}
-                showEmailField = {false}/>
-                showPasswordFields={{
-                    passwordInput: true,
-                    passwordResetButton: false
-                }}
-        </div>
-    </>)
+                <div className='login'>
+                    <h3 className='_header'>Восстановление пароля</h3>
+                    <FormFields
+                        submitSequence={submitSequence}
+                        submitButtonText='Отправить'
+                        changeModalFormButtonText = 'Я вспомнил пароль'
+                        changeModalFormOn={<Login/>}
+                        showEmailField = {false}/>
+                        showPasswordFields={{
+                            passwordInput: true,
+                            passwordResetButton: false
+                        }}
+                </div>
+            </>)
 }

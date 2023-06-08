@@ -1,24 +1,15 @@
-import React, {useContext} from "react";
-
-import './catalogpage.css';
-import {Cardlist} from "../../components/CardList/cardlist";
-import {AppContext} from "../../context/appcontext";
-import {CHEAPEST, EXPENSIVE, NEWEST, POPULAR, SALE, RATE} from "../../constants/constants";
-import {changeWordEnd} from "../../utils/utils";
+import React from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {sortProducts} from '../../storage/slices/cardsSlice'
+import './catalogpage.css';
 
-const sortedItems = [
-    {id: POPULAR, title: 'Популярные'},
-    {id: CHEAPEST, title: 'Сначала дешевые'},
-    {id: EXPENSIVE, title: 'Сначала дорогие'},
-    {id: NEWEST, title: 'Новинки'},
-    {id: SALE, title: 'Распродажа'},
-    {id: RATE, title: 'По рейтингу'}
-]
+import {sortProducts} from '../../storage/slices/cardsSlice'
+import {sortedItems} from "../../constants/constants";
+
+import {changeWordEnd} from "../../utils/utils";
+import {Cardlist} from "../../components/CardList/cardlist";
 
 export const CatalogPage = () => {
-    const {search} = useContext(AppContext)
+    const search = useSelector(state => state.search.searchRequest)
     const cards = useSelector((state) => state.cards.products)
     const dispatch = useDispatch()
 
