@@ -1,12 +1,11 @@
-import {Register} from "../../components/Auth/AuthModals/register";
 import {createSlice} from "@reduxjs/toolkit";
-
+import {Register} from "../../components/Auth/AuthModals/register";
 
 const initialState = {
     modalShow: false,
     modalChildren: <Register/>
 }
-
+    //TODO: переделать с прослойкой через Map что бы убрать из стейта non-serializble значение
 const modalSlice = createSlice({
     name: "modal",
     initialState: initialState,
