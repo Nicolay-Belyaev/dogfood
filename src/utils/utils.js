@@ -16,3 +16,10 @@ export const changeWordEnd = (amount, word) => {
     if (leftover > 1 && leftover < 5) {return ` ${word}а`}
     if (leftover === 1) {return ` ${word}`}
 }
+export const jsonificator = (data) => {
+    return data.json()
+}
+
+export const getTokenFromLocalStore = () => {
+    return localStorage.getItem('dogfood_token')
+}

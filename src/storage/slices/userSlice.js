@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {api} from "../../utils/api";
+import {userApi} from "../../api/userApi";
 
 const initialState = {
     data: {},
@@ -8,12 +8,11 @@ const initialState = {
 export const getUser = createAsyncThunk(
     "getUser",
     async function() {
-        return await api.getUserInfo()
+        return await userApi.getUserInfo()
         }
     )
 
 const Error = (data) => {return data.type.endsWith("rejected")}
-
 const Loading = (data) => {return data.type.endsWith("pending")}
 
 const userSlice = createSlice({

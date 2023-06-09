@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {api} from "../../utils/api";
+import {api} from "../../api/productApi";
 import {CHEAPEST, EXPENSIVE, NEWEST, POPULAR, RATE, SALE} from "../../constants/constants";
 import {likedByCurrentUser, productRating} from "../../utils/utils";
 

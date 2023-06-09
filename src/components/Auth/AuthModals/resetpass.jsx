@@ -1,7 +1,7 @@
 import React from "react";
 import {useDispatch} from "react-redux";
 
-import {api} from "../../../utils/api";
+import {authApi} from "../../../api/authApi";
 import {changeModalChilder} from "../../../storage/slices/modalSlice";
 
 import {FormFields} from "../FormFields";
@@ -18,7 +18,7 @@ export const ResetPass = () => {
         }
     }
     const submitSequence = async (data) => {
-        const passwordResetApiResponse = await api.resetPassword(data, localStorage.getItem("dogfood_token"))
+        const passwordResetApiResponse = await authApi.resetPassword(data, localStorage.getItem("dogfood_token"))
         userAlert(passwordResetApiResponse)
         dispatch(changeModalChilder(<Login/>))
     }

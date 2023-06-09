@@ -1,7 +1,7 @@
 import React from "react";
 import {useDispatch} from "react-redux";
 
-import {api} from "../../../utils/api";
+import {authApi} from "../../../api/authApi";
 import {changeModalChilder} from "../../../storage/slices/modalSlice";
 
 import {FormFields} from "../FormFields";
@@ -20,7 +20,7 @@ export const Register = () => {
     }
 
     const submitSequence = async (data) => {
-        const registerApiResponse = await api.sighUp(data)
+        const registerApiResponse = await authApi.sighUp(data)
         userAlert(registerApiResponse)
     }
 

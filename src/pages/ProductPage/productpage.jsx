@@ -2,7 +2,7 @@ import React, {useCallback, useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useParams} from "react-router";
 
-import {api} from "../../utils/api";
+import {api} from "../../api/productApi";
 import {changeProductLike} from "../../storage/slices/cardsSlice";
 import {Product} from "../../components/Product/product";
 
