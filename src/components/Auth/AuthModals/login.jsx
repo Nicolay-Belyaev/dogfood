@@ -2,10 +2,11 @@ import React from "react";
 import {useDispatch} from "react-redux";
 import '../index.modules.scss'
 
-import {api} from "../../../utils/api";
+import {authApi} from "../../../api/authApi";
 import {changeModalShow} from "../../../storage/slices/modalSlice";
 
 import {FormFields} from "../FormFields";
+
 
 export const Login = () => {
     const dispatch = useDispatch()
@@ -18,7 +19,7 @@ export const Login = () => {
         }
     }
     const submitSequence = async (data) => {
-        const userInfo = await api.sighIn(data)
+        const userInfo = await authApi.sighIn(data)
         localStorage.setItem('dogfood_token', userInfo.token)
         userAlert()
     }

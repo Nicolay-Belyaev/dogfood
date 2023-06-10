@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 
-import {api} from "../../../utils/api";
+import {authApi} from "../../../api/authApi";
 import {changeModalChilder} from "../../../storage/slices/modalSlice";
 
 import {FormFields} from "../FormFields";
@@ -26,7 +26,7 @@ export const Reset = () => {
 
     const submitSequence = async (data) => {
         if (data.token === undefined) {
-            const tokenResetApiResponse = await api.resetToken(data)
+            const tokenResetApiResponse = await authApi.resetToken(data)
             setShowTokenField(userAlert(tokenResetApiResponse))
         }
         else {
