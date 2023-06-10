@@ -1,16 +1,16 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
+import {useLocation} from "react-router";
 import {useDebounce} from "../../hooks/hooks";
 import {Link} from "react-router-dom";
 import "./header.scss"
 
 import {changeModalShow} from "../../storage/slices/modalSlice";
-import {searchProductByRequest} from "../../storage/slices/cardsSlice";
 import {changeSearchRequest} from "../../storage/slices/searchSlice";
+import {searchProductByRequest} from "../../storage/slices/cardsSlice";
 
 import {Logo} from "../Logo/logo";
 import {Search} from "../Search/search";
-import {useLocation} from "react-router";
 
 import {ReactComponent as Basket} from '../Resourses/img/cart.svg';
 import {ReactComponent as Like} from '../Resourses/img/like.svg';

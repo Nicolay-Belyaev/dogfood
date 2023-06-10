@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 import {useForm} from "react-hook-form";
 
-import {changeModalChilder} from "../../storage/slices/modalSlice";
+import {changeModalChilderPointer} from "../../storage/slices/modalSlice";
 
 const emailRequirements = {
     required: {
@@ -73,9 +73,9 @@ export const FormFields = ({showEmailField = true, ...props}) => {
 
         </div>
         <div className='buttons'>
-            {showPasswordFields.passwordResetButton && <div onClick={() => dispatch(changeModalChilder("resetToken"))}>Восстановить пароль</div>}
+            {showPasswordFields.passwordResetButton && <div onClick={() => dispatch(changeModalChilderPointer("resetToken"))}>Восстановить пароль</div>}
             <button className='button__yellow' type='submit'>{submitButtonText}</button>
-            <button className='button__blank' onClick={() => dispatch(changeModalChilder(changeModalFormOn))}>{changeModalFormButtonText}</button>
+            <button className='button__blank' onClick={() => dispatch(changeModalChilderPointer(changeModalFormOn))}>{changeModalFormButtonText}</button>
         </div>
     </form>
     )

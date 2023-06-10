@@ -2,7 +2,7 @@ import React from "react";
 import {useDispatch} from "react-redux";
 
 import {authApi} from "../../../api/authApi";
-import {changeModalChilder} from "../../../storage/slices/modalSlice";
+import {changeModalChilderPointer} from "../../../storage/slices/modalSlice";
 
 import {FormFields} from "../FormFields";
 
@@ -14,7 +14,7 @@ export const Register = () => {
             alert(apiResponse.message)
         } else {
             alert(`Пользователь c логинов ${apiResponse.email} успешно зарегистрирован.`)
-            dispatch(changeModalChilder("login"))
+            dispatch(changeModalChilderPointer("login"))
         }
     }
 

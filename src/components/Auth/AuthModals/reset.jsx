@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {useDispatch} from "react-redux";
 
 import {authApi} from "../../../api/authApi";
-import {changeModalChilder} from "../../../storage/slices/modalSlice";
+import {changeModalChilderPointer} from "../../../storage/slices/modalSlice";
 
 import {FormFields} from "../FormFields";
 
@@ -31,7 +31,7 @@ export const Reset = () => {
         }
         else {
             localStorage.setItem("dogfood_token", data.token)
-            dispatch(changeModalChilder("resetPassword"))
+            dispatch(changeModalChilderPointer("resetPassword"))
         }
     }
 

@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
     modalShow: false,
-    modalChildren: "register"
+    modalChildrenPointer: "register"
 }
 
 const modalSlice = createSlice({
@@ -12,11 +12,11 @@ const modalSlice = createSlice({
         changeModalShow: (state, {payload}) => {
             state.modalShow = payload
         },
-        changeModalChilder: (state, {payload}) => {
-            state.modalChildren = payload
+        changeModalChilderPointer: (state, {payload}) => {
+            state.modalChildrenPointer = payload
         }
     }
 })
 
 export default modalSlice.reducer
-export const {changeModalChilder, changeModalShow} = modalSlice.actions
+export const {changeModalChilderPointer, changeModalShow} = modalSlice.actions

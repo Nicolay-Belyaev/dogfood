@@ -2,7 +2,7 @@ import React, {useCallback, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import s from './index.module.scss'
 
-import {changeModalChilder, changeModalShow} from "../../storage/slices/modalSlice";
+import {changeModalChilderPointer, changeModalShow} from "../../storage/slices/modalSlice";
 import {Register} from "../Auth/AuthModals/register";
 import {Login} from "../Auth/AuthModals/login";
 import {Reset} from "../Auth/AuthModals/reset";
@@ -11,10 +11,10 @@ import {ResetPass} from "../Auth/AuthModals/resetpass";
 export const Modal = () => {
     const dispatch = useDispatch()
     const modalShow = useSelector(state => state.modal.modalShow)
-    const childrenPointer = useSelector(state => state.modal.modalChildren)
+    const childrenPointer = useSelector(state => state.modal.modalChildrenPointer)
 
     const escapeSequence = () => {
-        dispatch(changeModalChilder("register"))
+        dispatch(changeModalChilderPointer("register"))
         dispatch(changeModalShow(false))
     }
     const escapeClose = useCallback((event) => {
