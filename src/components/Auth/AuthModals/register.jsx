@@ -5,7 +5,6 @@ import {api} from "../../../utils/api";
 import {changeModalChilder} from "../../../storage/slices/modalSlice";
 
 import {FormFields} from "../FormFields";
-import {Login} from "./login";
 
 export const Register = () => {
     const dispatch = useDispatch()
@@ -15,7 +14,7 @@ export const Register = () => {
             alert(apiResponse.message)
         } else {
             alert(`Пользователь c логинов ${apiResponse.email} успешно зарегистрирован.`)
-            dispatch(changeModalChilder(<Login/>))
+            dispatch(changeModalChilder("login"))
         }
     }
 
@@ -30,7 +29,7 @@ export const Register = () => {
                        submitSequence={submitSequence}
                        submitButtonText='Зарегистрироваться'
                        changeModalFormButtonText = 'Войти'
-                       changeModalFormOn={<Login/>}
+                       changeModalFormOn={"login"}
                        showPasswordFields={{
                            passwordInput: true,
                            passwordResetButton: false

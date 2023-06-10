@@ -10,6 +10,5 @@ export const store = configureStore({
         cards: cardsSlice,
         modal: modalSlice,
         search: searchSlice
-    },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware({serializableCheck: false})
+    }
 })

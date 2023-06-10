@@ -5,8 +5,6 @@ import {api} from "../../../utils/api";
 import {changeModalChilder} from "../../../storage/slices/modalSlice";
 
 import {FormFields} from "../FormFields";
-import {Login} from "./login";
-import {ResetPass} from "./resetpass";
 
 export const Reset = () => {
     const [showTokenField, setShowTokenField] = useState(false)
@@ -33,7 +31,7 @@ export const Reset = () => {
         }
         else {
             localStorage.setItem("dogfood_token", data.token)
-            dispatch(changeModalChilder(<ResetPass/>))
+            dispatch(changeModalChilder("resetPassword"))
         }
     }
 
@@ -44,7 +42,7 @@ export const Reset = () => {
                         submitSequence={submitSequence}
                         submitButtonText='Отправить'
                         changeModalFormButtonText = 'Я вспомнил пароль'
-                        changeModalFormOn={<Login/>}
+                        changeModalFormOn={"login"}
                         showPasswordFields={{
                             passwordInput: false,
                             passwordResetButton: false}}

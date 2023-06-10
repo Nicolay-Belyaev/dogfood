@@ -4,19 +4,32 @@ import s from './index.module.scss'
 
 import {changeModalChilder, changeModalShow} from "../../storage/slices/modalSlice";
 import {Register} from "../Auth/AuthModals/register";
+import {Login} from "../Auth/AuthModals/login";
+import {Reset} from "../Auth/AuthModals/reset";
+import {ResetPass} from "../Auth/AuthModals/resetpass";
 
 export const Modal = () => {
     const dispatch = useDispatch()
     const modalShow = useSelector(state => state.modal.modalShow)
-    const children = useSelector(state => state.modal.modalChildren)
+    const childrenPointer = useSelector(state => state.modal.modalChildren)
 
     const escapeSequence = () => {
-        dispatch(changeModalChilder(<Register/>))
+        dispatch(changeModalChilder("register"))
         dispatch(changeModalShow(false))
     }
     const escapeClose = useCallback((event) => {
         if (event.key === 'Escape') {
             escapeSequence()
+        }
+    }, [])
+
+    const childrenSwitcher = useCallback((childrenPointer) => {
+        switch (childrenPointer) {
+            case "register": return <Register/>
+            case "login": return <Login/>
+            case "resetToken": return <Reset/>
+            case "resetPassword": return <ResetPass/>
+            default: return
         }
     }, [])
 
@@ -32,7 +45,7 @@ export const Modal = () => {
             <div className={s.container}>
                 <div className={s.modal}>
                     <div className={s.modal__close} onClick={escapeSequence}>X</div>
-                    {children}
+                    {childrenSwitcher(childrenPointer)}
                 </div>
             </div>)
 }

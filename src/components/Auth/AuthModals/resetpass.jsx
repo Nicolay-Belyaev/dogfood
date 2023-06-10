@@ -5,7 +5,6 @@ import {api} from "../../../utils/api";
 import {changeModalChilder} from "../../../storage/slices/modalSlice";
 
 import {FormFields} from "../FormFields";
-import {Login} from "./login";
 
 export const ResetPass = () => {
     const dispatch = useDispatch()
@@ -20,7 +19,7 @@ export const ResetPass = () => {
     const submitSequence = async (data) => {
         const passwordResetApiResponse = await api.resetPassword(data, localStorage.getItem("dogfood_token"))
         userAlert(passwordResetApiResponse)
-        dispatch(changeModalChilder(<Login/>))
+        dispatch(changeModalChilder("login"))
     }
 
     return (<>
@@ -30,7 +29,7 @@ export const ResetPass = () => {
                         submitSequence={submitSequence}
                         submitButtonText='Отправить'
                         changeModalFormButtonText = 'Я вспомнил пароль'
-                        changeModalFormOn={<Login/>}
+                        changeModalFormOn={"login"}
                         showEmailField = {false}/>
                         showPasswordFields={{
                             passwordInput: true,

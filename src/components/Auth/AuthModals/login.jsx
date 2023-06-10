@@ -6,7 +6,6 @@ import {api} from "../../../utils/api";
 import {changeModalShow} from "../../../storage/slices/modalSlice";
 
 import {FormFields} from "../FormFields";
-import {Register} from "./register";
 
 export const Login = () => {
     const dispatch = useDispatch()
@@ -30,7 +29,7 @@ export const Login = () => {
                     submitSequence={submitSequence}
                     submitButtonText='Войти'
                     changeModalFormButtonText='Регистрация'
-                    changeModalFormOn={<Register/>}
+                    changeModalFormOn={"register"}
                     showPasswordFields={{
                         passwordInput: true,
                         passwordResetButton: true
