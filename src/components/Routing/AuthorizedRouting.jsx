@@ -5,9 +5,8 @@ import {CatalogPage} from "../../pages/CatalogPage/catalogpage";
 import {ProductPage} from "../../pages/ProductPage/productpage";
 import {FavoritePage} from "../../pages/FavoritePage/favoritepage";
 
-//TODO: разделить доступ в зависимости от того, авторизован пользователь или нет
-export const Routing = () => {
-    return ( <>
+export const AuthorizedRouting = () => {
+    return (<>
         <Routes>
             <Route path="/" element={<CatalogPage />}/>,
             <Route path="/product/:id" element={<ProductPage />}/>,
