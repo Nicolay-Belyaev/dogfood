@@ -14,7 +14,7 @@ export const Modal = () => {
     const childrenPointer = useSelector(state => state.modal.modalChildrenPointer)
 
     const escapeSequence = () => {
-        dispatch(changeModalChilderPointer("register"))
+        dispatch(changeModalChilderPointer("login"))
         dispatch(changeModalShow(false))
     }
     const escapeClose = useCallback((event) => {

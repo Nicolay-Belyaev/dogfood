@@ -3,7 +3,8 @@ import {userApi} from "../../api/userApi";
 
 const initialState = {
     data: {},
-    loading: false
+    loading: false,
+    authorized: !!localStorage.getItem('dogfood_token')
 }
 export const getUser = createAsyncThunk(
     "getUser",
@@ -18,6 +19,11 @@ const Loading = (data) => {return data.type.endsWith("pending")}
 const userSlice = createSlice({
     name: "user",
     initialState: initialState,
+    reducers: {
+        setAuthorized: (state, {payload}) => {
+            state.authorized = {payload}
+        }
+    },
     extraReducers: (builder) => {
         builder.addCase(getUser.fulfilled, (state, {payload}) => {
             state.data = payload
@@ -34,3 +40,4 @@ const userSlice = createSlice({
 })
 
 export default userSlice.reducer
+export const {setAuthorized} = userSlice.actions

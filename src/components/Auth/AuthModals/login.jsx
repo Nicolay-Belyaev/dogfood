@@ -6,6 +6,7 @@ import {authApi} from "../../../api/authApi";
 import {changeModalShow} from "../../../storage/slices/modalSlice";
 
 import {FormFields} from "../FormFields";
+import {setAuthorized} from "../../../storage/slices/userSlice";
 
 
 export const Login = () => {
@@ -21,6 +22,7 @@ export const Login = () => {
     const submitSequence = async (data) => {
         const userInfo = await authApi.sighIn(data)
         localStorage.setItem('dogfood_token', userInfo.token)
+        dispatch(setAuthorized(true))
         userAlert()
     }
 

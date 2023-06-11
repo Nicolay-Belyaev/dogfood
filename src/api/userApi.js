@@ -9,7 +9,10 @@ class UserApi {
     getUserInfo() {
         return fetch(`${this.baseURL}/users/me`, {
             method: "GET",
-            headers: this.headers
+            headers: {
+                'Content-Type': "application/json",
+                authorization: localStorage.getItem("dogfood_token")
+            }
         }).then(jsonificator)
             .catch((reject) => {console.log(jsonificator(reject))
             })
@@ -18,3 +21,12 @@ class UserApi {
 }
 
 export const userApi = new UserApi(config)
+
+const updateHeaders = () => {
+    return {
+        headers: {
+            'Content-Type': "application/json",
+            authorization: localStorage.getItem("dogfood_token")
+        }
+    }
+}

@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
     modalShow: false,
-    modalChildrenPointer: "register"
+    modalChildrenPointer: "login"
 }
 
 const modalSlice = createSlice({

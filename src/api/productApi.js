@@ -19,7 +19,10 @@ class ProductApi {
     getProductList() {
         return fetch(`${this.baseURL}/products`, {
             method: "GET",
-            headers: this.headers
+            headers: {
+                'Content-Type': "application/json",
+                authorization: localStorage.getItem("dogfood_token")
+            }
         }).then(jsonificator)
             .catch((reject) => {console.log(jsonificator(reject))
             })
