@@ -1,5 +1,5 @@
 import {config} from "./confing";
-import {jsonificator} from "../utils/utils";
+import {jsonificator, updateHeaders} from "../utils/utils";
 
 class UserApi {
     constructor(data) {
@@ -9,10 +9,7 @@ class UserApi {
     getUserInfo() {
         return fetch(`${this.baseURL}/users/me`, {
             method: "GET",
-            headers: {
-                'Content-Type': "application/json",
-                authorization: localStorage.getItem("dogfood_token")
-            }
+            ...updateHeaders(),
         }).then(jsonificator)
             .catch((reject) => {console.log(jsonificator(reject))
             })
@@ -22,11 +19,3 @@ class UserApi {
 
 export const userApi = new UserApi(config)
 
-const updateHeaders = () => {
-    return {
-        headers: {
-            'Content-Type': "application/json",
-            authorization: localStorage.getItem("dogfood_token")
-        }
-    }
-}

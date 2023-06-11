@@ -1,5 +1,5 @@
 import {config} from "./confing";
-import {jsonificator} from "../utils/utils";
+import {jsonificator, updateHeaders} from "../utils/utils";
 
 class ProductApi {
     constructor(data) {
@@ -10,7 +10,7 @@ class ProductApi {
     getProductById(id) {
         return fetch(`${this.baseURL}/products/${id}`, {
             method: "GET",
-            headers: this.headers
+            ...updateHeaders(),
         }).then(jsonificator)
             .catch((reject) => {console.log(jsonificator(reject))
             })
@@ -19,10 +19,7 @@ class ProductApi {
     getProductList() {
         return fetch(`${this.baseURL}/products`, {
             method: "GET",
-            headers: {
-                'Content-Type': "application/json",
-                authorization: localStorage.getItem("dogfood_token")
-            }
+            ...updateHeaders(),
         }).then(jsonificator)
             .catch((reject) => {console.log(jsonificator(reject))
             })
@@ -31,7 +28,7 @@ class ProductApi {
     searchProduct(searchRequest) {
         return fetch(`${this.baseURL}/products/search?query=${searchRequest}`, {
             method: "GET",
-            headers: this.headers
+            ...updateHeaders(),
         }).then(jsonificator)
             .catch((reject) => {console.log(jsonificator(reject))
             })
@@ -40,7 +37,7 @@ class ProductApi {
     changeLike(productId, currentLikeState) {
         return fetch(`${this.baseURL}/products/likes/${productId}`, {
             method: `${currentLikeState ? 'DELETE' : 'PUT'}`,
-            headers: this.headers
+            ...updateHeaders(),
         }).then(jsonificator)
             .catch((reject) => {console.log(jsonificator(reject))
             })
@@ -49,7 +46,7 @@ class ProductApi {
     addProductReview(productId, data) {
         return fetch(`${this.baseURL}/products/review/${productId}`, {
             method: 'POST',
-            headers: this.headers,
+            ...updateHeaders(),
             body: JSON.stringify(data)
         }).then(jsonificator)
             .catch((reject => {console.log(jsonificator(reject))
@@ -59,7 +56,7 @@ class ProductApi {
     deleteProductReview(productId, reviewId) {
         return fetch(`${this.baseURL}/products/review/${productId}/${reviewId}`, {
             method: 'DELETE',
-            headers: this.headers
+            ...updateHeaders(),
         }).then(jsonificator)
     }
 }

@@ -20,6 +20,11 @@ export const jsonificator = (data) => {
     return data.json()
 }
 
-export const getTokenFromLocalStore = () => {
-    return localStorage.getItem('dogfood_token')
+export const updateHeaders = () => {
+    return {
+        headers: {
+            'Content-Type': "application/json",
+            authorization: localStorage.getItem("dogfood_token")
+        }
+    }
 }
