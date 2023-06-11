@@ -7,9 +7,9 @@ import {getProducts} from "./storage/slices/cardsSlice";
 import {Header} from "./components/Header/header";
 import {Footer} from "./components/Footer/footer";
 import {Modal} from "./components/Modal/modal";
-import {AuthorizedRouting} from "./components/Routing/AuthorizedRouting";
+import {AuthorizedRouting} from "./components/Routing/authorizedRouting";
 import {useNavigate} from "react-router";
-import {NotAuthorizedRouting} from "./components/Routing/NotAuthorizedRouting";
+import {NotAuthorizedRouting} from "./components/Routing/notAuthorizedRouting";
 
 export function App() {
     const navigate = useNavigate()
