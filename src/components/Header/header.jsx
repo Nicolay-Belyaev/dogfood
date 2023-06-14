@@ -46,7 +46,9 @@ export const Header = () => {
                             <Like className='header__like' />
                             {!!favorites.length && <span className='header__bubble'>{favorites.length}</span>}
                         </Link>
-                        <Basket className='header__icon' />
+                        <Link to={'/basket'}>
+                            <Basket className='header__icon' />
+                        </Link>
                         {/*TODO: следующий линк должен будет вести на регистрацию/авторизацию или в профиль для авторизованных пользователей*/}
                         <Link to={'/'} onClick={() => dispatch(changeModalShow(true))}>
                             <Profile className='header__icon' />

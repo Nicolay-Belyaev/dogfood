@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  gap: 3rem;
+}
+
+.description {
+  display: flex;
+}
+
+.text {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.img {
+  height: 100px;
+  width: 100px;
+}
+
+.controls {
+  display: flex;
+  gap: 1rem;
+}

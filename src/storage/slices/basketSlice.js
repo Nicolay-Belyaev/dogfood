@@ -11,19 +11,18 @@ const basketSlice = createSlice({
     reducers: {
         addToBasket: (state, {payload}) => {
             for (let i = 0; i < state.basket.length; i++) {
-                if (state.basket[i][0]._id === payload._id) {
-                    state.basket[i][1].amountInBasket++
+                if (state.basket[i]._id === payload._id) {
+                    state.basket[i].amountInBasket++
                     return
                 }
             }
-            const productInBasket = [payload, {amountInBasket: 1}]
-            state.basket.push(productInBasket)
+            state.basket.push({...payload, amountInBasket: 1})
         },
         removeFromBasket: (state, {payload}) => {
             for (let i = 0; i < state.basket.length; i++) {
-                if (state.basket[i][0]._id === payload._id) {
-                    state.basket[i][1].amountInBasket--
-                    if (state.basket[i][1].amountInBasket < 1) {
+                if (state.basket[i]._id === payload._id) {
+                    state.basket[i].amountInBasket--
+                    if (state.basket[i].amountInBasket < 1) {
                         state.basket.splice(i, 1)
                     }
                     }
@@ -34,4 +33,4 @@ const basketSlice = createSlice({
 
 export default basketSlice.reducer
 
-export const {addToBasket} = basketSlice.actions
+export const {addToBasket, removeFromBasket} = basketSlice.actions
