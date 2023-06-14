@@ -5,6 +5,7 @@ import "./card.scss";
 
 import {changeProductLike} from "../../storage/slices/cardsSlice";
 import {ReactComponent as Like} from "../Resourses/img/like.svg";
+import {addToBasket} from "../../storage/slices/basketSlice";
 
 export const Card = ({ discount, pictures, image, price, name, wight, tags, likes, product }) => {
     const dispatch = useDispatch()
@@ -40,7 +41,7 @@ export const Card = ({ discount, pictures, image, price, name, wight, tags, like
                         </div>
                         <p className='card__name'>{name}</p>
                     </Link>
-                <span className='card__card btn btn_type_primary'>В корзину</span>
+                <span className='card__card btn btn_type_primary' onClick={() => dispatch(addToBasket(product))}>В корзину</span>
             </div>
             )
 }
