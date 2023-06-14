@@ -15,6 +15,7 @@ export function App() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const authorized = useSelector(state => state.user.authorized)
+    const basket = useSelector(state => state.basket.basket)
 
     useEffect(() => {
         if (authorized) {
@@ -25,6 +26,10 @@ export function App() {
             navigate('/not-authorized')
         }
     }, [authorized])
+
+    useEffect(() => {
+        localStorage.setItem('basket', JSON.stringify(basket))
+    }, [basket])
 
     return (<div className='App'>
                 <Modal/>

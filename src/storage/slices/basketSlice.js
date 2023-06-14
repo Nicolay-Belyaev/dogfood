@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 const initialState = {
-    basket: []
+    basket: JSON.parse(localStorage.getItem('basket')) || []
 }
 
 
@@ -24,7 +24,7 @@ const basketSlice = createSlice({
                     state.basket[i].amountInBasket--
                     if (state.basket[i].amountInBasket < 1) {
                         state.basket.splice(i, 1)
-                    }
+                        }
                     }
                 }
         }
