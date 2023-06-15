@@ -22,3 +22,12 @@
   display: flex;
   gap: 1rem;
 }
+
+.discount {
+  color: red;
+  font-size: 20px;
+}
+
+.oldPrice {
+  text-decoration: line-through;
+}

@@ -28,3 +28,7 @@ export const updateHeaders = () => {
         }
     }
 }
+
+export const getDiscountPrice = (discount, price) => {
+    return (price - Math.floor(price * discount / 100)).toFixed(0)
+}

@@ -29,7 +29,7 @@ export function App() {
 
     useEffect(() => {
         localStorage.setItem('basket', JSON.stringify(basket))
-    }, [basket])
+    }, [basket, ])
 
     return (<div className='App'>
                 <Modal/>

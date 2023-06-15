@@ -7,7 +7,7 @@ import {Rating} from "../Rating/rating";
 import {Reviews} from "../Reviews/reviews";
 import {BackButton} from "../Buttons/BackButton/backbutton";
 import {BaseButton} from "../Buttons/BaseButton/basebutton";
-import {changeWordEnd, productRating} from "../../utils/utils";
+import {changeWordEnd, getDiscountPrice, productRating} from "../../utils/utils";
 
 import {ReactComponent as Like} from "../Resourses/img/like.svg";
 import {ReactComponent as Truck} from "../Resourses/img/truck.svg";
@@ -16,9 +16,6 @@ export const Product = ({product, onProductLike, sendReview, onDeleteReview}) =>
     const [isProductLiked, setIsProductLiked] = useState(false)
     const user = useSelector((state) => state.user.data)
 
-    const getDiscountPrice = (discount, price) => {
-        return (price - Math.floor(price * discount / 100)).toFixed(0)
-    }
     const handleClick = () => {
         onProductLike(product, isProductLiked)
     }
