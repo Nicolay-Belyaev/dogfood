@@ -2,8 +2,9 @@ import React from "react";
 import {useSelector} from "react-redux";
 import {BasketCard} from "../../components/BasketCard/basketCard";
 import s from './index.module.scss'
-import {getDiscountPrice} from "../../utils/utils";
+import {changeWordEnd, getDiscountPrice} from "../../utils/utils";
 import {BaseButton} from "../../components/Buttons/BaseButton/basebutton";
+import cn from "classnames";
 
 export const BasketPage = () => {
     const cardsInBasket = useSelector(state => state.basket.basket)
@@ -16,9 +17,10 @@ export const BasketPage = () => {
 
     return (<>
             {!!productsInBasket &&
-                <p className={s.container}>
-                    {productsInBasket} товаров в корзине.
-                </p>}
+                <div className={s.productsCounter}>
+                    {productsInBasket} {changeWordEnd(productsInBasket,"товар")}
+                    <span className={s.productsCounter__end}> в корзине.</span>
+                </div>}
 
             <div className={s.container}>
 
@@ -28,19 +30,22 @@ export const BasketPage = () => {
                     })}
                 </div>
 
-                <div className={s.total}>
-                    <span>Ваша корзина</span>
-                    <div className={s.price}>
-                        <span>Товары ({productsInBasket})</span>
-                        <span>{costInBasket} ₽</span>
+                <div className={s.checkout}>
+                    <span className={s.checkout__title}>Ваша корзина</span>
+                    <div className={s.checkout__line}>
+                        <span className={s.checkout__tagName}>Товары ({productsInBasket})</span>
+                        <span>{costInBasket}&nbsp;₽</span>
                     </div>
-                    <div className={s.price}>
-                        <span>Скидка</span>
-                        <span>-{totalDiscount} ₽</span>
+                    <div className={s.checkout__line}>
+                        <span className={s.checkout__tagName}>Скидка</span>
+                        <span className={cn(
+                            {[s.red]: !!totalDiscount})}>
+                            {!!totalDiscount && <span>-</span>} {totalDiscount}&nbsp;₽
+                        </span>
                     </div>
-                    <div className={s.price}>
-                        <span>Общая стоимость</span>
-                        <span>{costInBasket - totalDiscount} ₽</span>
+                    <div className={s.checkout__line}>
+                        <span className={cn(s.checkout__title, s.size)}>Общая стоимость</span>
+                        <span>{costInBasket - totalDiscount}&nbsp;₽</span>
                     </div>
                     <BaseButton children='Оформить заказ'/>
                 </div>

@@ -1,33 +1,151 @@
-.container {
+.product {
   display: flex;
   gap: 3rem;
+  width: 620px;
+  justify-content: space-between;
+
+}
+
+.img {
+  height: 62px;
+  width: 62px;
 }
 
 .description {
   display: flex;
+  &__text {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 244px;
+    height: 62px;
+  }
 }
 
-.text {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.name {
+  width: 244px;
+  height: 40px;
+
+  font-family: 'Nunito', serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
 }
 
-.img {
-  height: 100px;
-  width: 100px;
+.wight {
+  width: 244px;
+  height: 14px;
+
+  font-family: 'Nunito', serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+
+  color: #7B8E98;
 }
 
 .controls {
   display: flex;
+  align-items: center;
   gap: 1rem;
 }
 
-.discount {
-  color: red;
-  font-size: 20px;
+.selector {
+
+
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  gap: 12px;
+
+  width: 90px;
+  height: 36px;
+
+  border: 1px solid #CFD8DC;
+  border-radius: 100px;
 }
 
+.discount {
+  width: 72px;
+  height: 24px;
+
+  font-family: 'Nunito', serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: end;
+
+  color: #F44336;
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  padding: 0;
+
+  width: 92px;
+  height: 44px;
+  &__discount {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+  }
+}
+
+
 .oldPrice {
+  width: 50px;
+  height: 20px;
+
+  font-family: 'Nunito', serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+
   text-decoration: line-through;
+  text-align: end;
+}
+
+.fullprice {
+  width: 54px;
+  height: 24px;
+
+  font-family: 'Nunito', serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+
+  text-align: end;
+}
+
+.basket {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.arrow {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.amountInBasket {
+  font-family: 'Nunito', serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 16px;
+  line-height: 20px;
 }

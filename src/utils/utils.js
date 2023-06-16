@@ -12,9 +12,11 @@ export const productRating = (product) => {
 
 export const changeWordEnd = (amount, word) => {
     const leftover = amount % 10;
-    if (!amount || amount === 11 || !leftover || (leftover >= 5 && leftover < 9)) {return ` ${word}ов`}
-    if (leftover > 1 && leftover < 5) {return ` ${word}а`}
-    if (leftover === 1) {return ` ${word}`}
+    if (amount in {2:2, 3:3, 4:4}) {return ` ${word}а`}
+    if (amount in {11:11}) {return ` ${word}ов`}
+    if (leftover === 1 || amount === 1) {return ` ${word}`}
+    else {return ` ${word}ов`}
+
 }
 export const jsonificator = (data) => {
     return data.json()

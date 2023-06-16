@@ -27,10 +27,17 @@ const basketSlice = createSlice({
                         }
                     }
                 }
+        },
+        purgeFromBasket: (state, {payload}) => {
+            for (let i = 0; i < state.basket.length; i++) {
+                if (state.basket[i]._id === payload._id) {
+                    state.basket.splice(i, 1)
+                }
+            }
         }
     }
 })
 
 export default basketSlice.reducer
 
-export const {addToBasket, removeFromBasket} = basketSlice.actions
+export const {addToBasket, removeFromBasket, purgeFromBasket} = basketSlice.actions
