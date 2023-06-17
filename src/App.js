@@ -10,6 +10,7 @@ import {Modal} from "./components/Modal/modal";
 import {AuthorizedRouting} from "./components/Routing/authorizedRouting";
 import {useNavigate} from "react-router";
 import {NotAuthorizedRouting} from "./components/Routing/notAuthorizedRouting";
+import {calcAllAmount} from "./storage/slices/basketSlice";
 
 export function App() {
     const navigate = useNavigate()
@@ -29,7 +30,8 @@ export function App() {
 
     useEffect(() => {
         localStorage.setItem('basket', JSON.stringify(basket))
-    }, [basket, ])
+        dispatch(calcAllAmount())
+    }, [basket])
 
     return (<div className='App'>
                 <Modal/>

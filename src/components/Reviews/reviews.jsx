@@ -49,7 +49,8 @@ export const Reviews = ({reviews, onSendReview, onDeleteReview}) => {
                 <div className={s.reviews__list}>
                     <div className={s.reviews__hr}/>
                     {reviews
-                        .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
+                        // TODO: разобраться почему сортировка ломает страницу при нажатии кнопки BasketButton
+                        // .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
                         .map((e) =>
                             <div key={e._id}>
                                 <div className={s.reviews__item}>

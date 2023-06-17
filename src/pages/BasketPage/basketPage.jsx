@@ -5,22 +5,26 @@ import s from './index.module.scss'
 import {changeWordEnd, getDiscountPrice} from "../../utils/utils";
 import {BaseButton} from "../../components/Buttons/BaseButton/basebutton";
 import cn from "classnames";
+import {Link} from "react-router-dom";
 
 export const BasketPage = () => {
     const cardsInBasket = useSelector(state => state.basket.basket)
-    const productsInBasket = cardsInBasket.reduce((accum, product) =>
-                                  accum + product.amountInBasket, 0)
+    const productsInBasket = useSelector(state => state.basket.allProductsAmount)
     const costInBasket = cardsInBasket.reduce((accum, product) =>
                                   accum + product.amountInBasket * product.price, 0)
     const totalDiscount = costInBasket - cardsInBasket.reduce((accum, product) =>
                                   accum + product.amountInBasket * getDiscountPrice(product.discount, product.price), 0)
 
     return (<>
-            {!!productsInBasket &&
+            {!!productsInBasket ?
                 <div className={s.productsCounter}>
                     {productsInBasket} {changeWordEnd(productsInBasket,"товар")}
                     <span className={s.productsCounter__end}> в корзине.</span>
-                </div>}
+                </div> :
+                <div className={s.productsCounter}>В корзине пока нет товаров. <br/>
+                    Добавьте <Link to={'/'}>что-нибудь.</Link>
+                </div>
+            }
 
             <div className={s.container}>
 

@@ -6,7 +6,7 @@ import s from './index.module.scss'
 import {Rating} from "../Rating/rating";
 import {Reviews} from "../Reviews/reviews";
 import {BackButton} from "../Buttons/BackButton/backbutton";
-import {BaseButton} from "../Buttons/BaseButton/basebutton";
+import {BasketButton} from "../Buttons/BasketButton/basketButton";
 import {changeWordEnd, getDiscountPrice, productRating} from "../../utils/utils";
 
 import {ReactComponent as Like} from "../Resourses/img/like.svg";
@@ -52,14 +52,8 @@ export const Product = ({product, onProductLike, sendReview, onDeleteReview}) =>
                             className={`${s.price} ${s.newPrice}`}>{getDiscountPrice(product.discount, product.price)}&nbsp;p</span>
                     }
 
-            {/*TODO: Доделать иконки кнопок, дописать логику изменения значения при нажатии + / -*/}
                     <div className={s.controls}>
-                        <div className={s.controls__cart__left}>
-                            <span className={s.controls__cart__minus}>-</span>
-                            <span className={s.controls__cart__num}>0</span>
-                            <span className={s.controls__cart__plus}>+</span>
-                        </div>
-                        <BaseButton>В корзину</BaseButton>
+                        <BasketButton product={product}/>
                     </div>
                     <div>
                         <button className={cn(s.favorite, {[s.favoriteActive]: isProductLiked})} onClick={handleClick}>

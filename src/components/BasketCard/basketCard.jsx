@@ -1,21 +1,25 @@
 import React from "react";
-import s from './index.module.scss'
 import {useDispatch} from "react-redux";
+
+import s from './index.module.scss'
 import {addToBasket, purgeFromBasket, removeFromBasket} from "../../storage/slices/basketSlice";
 import {getDiscountPrice} from "../../utils/utils";
 
 import {ReactComponent as Basket} from "../Resourses/img/basket.svg";
 import {ReactComponent as ArrowLeft} from "../Resourses/img/arrow-left.svg";
 import {ReactComponent as ArrowRight} from "../Resourses/img/arrow-right.svg";
+import {Link} from "react-router-dom";
 
-export const BasketCard = ({product, pictures, name, wight, amountInBasket, price, discount, }) => {
+export const BasketCard = ({product, pictures, name, wight, amountInBasket, price, discount}) => {
     const dispatch = useDispatch()
 
     return (
         <div className={s.product}>
 
             <div className={s.description}>
-                <img src={pictures} alt='pict' className={s.img}/>
+                <Link to={`/product/${product._id}`}>
+                    <img src={pictures} alt='pict' className={s.img}/>
+                </Link>
                 <div className={s.description__text}>
                     <div className={s.name}>{name}</div>
                     <div className={s.wight}>{wight}</div>
