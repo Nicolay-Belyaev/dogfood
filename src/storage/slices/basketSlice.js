@@ -36,12 +36,8 @@ const basketSlice = createSlice({
                 }
         },
         purgeFromBasket: (state, {payload}) => {
-            for (let i = 0; i < state.basket.length; i++) {
-                if (state.basket[i]._id === payload._id) {
-                    state.basket.splice(i, 1)
-                    calcAllAmountFunc(state)
-                }
-            }
+            state.basket = state.basket.filter((productInBasket) => productInBasket._id !== payload._id)
+            calcAllAmountFunc(state)
         },
         calcAllAmount: (state) => {
             calcAllAmountFunc(state)
