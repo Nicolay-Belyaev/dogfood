@@ -14,7 +14,15 @@ class UserApi {
             .catch((reject) => {console.log(jsonificator(reject))
             })
     }
-
+    changeUserAvatar(data) {
+        return fetch(`${this.baseURL}/v2/12/users/me/avatar`, {
+            method: "PATCH",
+            body: JSON.stringify(data),
+            ...updateHeaders(),
+        }).then()
+            .catch((reject) => {console.log(jsonificator(reject))
+            })
+    }
 }
 
 export const userApi = new UserApi(config)

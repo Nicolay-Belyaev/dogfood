@@ -3,7 +3,6 @@ import {useDispatch} from "react-redux";
 
 import {authApi} from "../../../api/authApi";
 import {changeModalChilderPointer} from "../../../storage/slices/modalSlice";
-
 import {FormFields} from "../FormFields";
 
 export const Register = () => {

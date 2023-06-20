@@ -18,6 +18,7 @@ import {ReactComponent as Profile} from '../Resourses/img/profile.svg';
 
 export const Header = () => {
     const user = useSelector((state) => state.user.data)
+    const authorized = useSelector(state => state.user.authorized)
     const favorites = useSelector((state) => state.cards.favorites)
     const basket = useSelector(state => state.basket)
     const search = useSelector(state => state.search.searchRequest)
@@ -47,14 +48,20 @@ export const Header = () => {
                             <Like className='header__like' />
                             {!!favorites.length && <span className='header__bubble'>{favorites.length}</span>}
                         </Link>
+
                         <Link className='header__fav' to={'/basket'}>
                             <Basket className='header__icon' />
                             {!!basket.basket.length && <span className='header__bubble'>{basket.allProductsAmount}</span>}
                         </Link>
-                        {/*TODO: следующий линк должен будет вести на регистрацию/авторизацию или в профиль для авторизованных пользователей*/}
-                        <Link to={'/'} onClick={() => dispatch(changeModalShow(true))}>
-                            <Profile className='header__icon' />
-                        </Link>
+
+                        {authorized ?
+                            <Link to={'/profile'}>
+                                <Profile className='header__icon' />
+                            </Link> :
+                            <Link to={'/'} onClick={() => dispatch(changeModalShow(true))}>
+                                <Profile className='header__icon' />
+                            </Link>
+                        }
                     </div>
                     <div>
                         <span>{user.name}</span>

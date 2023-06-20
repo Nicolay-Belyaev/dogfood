@@ -1,0 +1,29 @@
+.text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.block {
+  display: flex;
+  justify-content: space-between;
+  margin-right: 20px;
+}
+
+.line {
+  font-family: 'Nunito', serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 20px;
+  &__description {
+    font-size: 20px;
+  }
+}
+
+.edit {
+  position: relative;
+  left: 210px;
+  bottom: 105px;
+  fill: black;
+}
