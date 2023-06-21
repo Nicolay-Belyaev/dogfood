@@ -1,6 +1,7 @@
 import React from "react";
 import {useDispatch} from "react-redux";
 import {changeModalChilderPointer, changeModalShow} from "../../storage/slices/modalSlice";
+import s from './index.module.scss'
 
 //TODO: сделать стили
 export const NotAuthorizedPage = () => {
@@ -16,14 +17,14 @@ export const NotAuthorizedPage = () => {
     }
 
     return (
-        <div>
-            <div>
+        <div className={s.container}>
+            <div className={s.line}>
                 Что бы воспользоваться сайтом, пожалуйста,
-                <span onClick={activeModalAuthorization}> авторизуйтесь</span>.
+                <span className={s.line__link} onClick={activeModalAuthorization}> авторизуйтесь</span>.
             </div>
-            <div>
-                Если вы еще не зарегистрированы, воспользуйтесь формой
-                <span onClick={activeModalRegistration}> регистрации</span>.
+            <div className={s.line}>
+                Если вы еще не зарегистрированы, воспользуйтесь
+                <span className={s.line__link}  onClick={activeModalRegistration}> формой регистрации</span>.
             </div>
         </div>
 

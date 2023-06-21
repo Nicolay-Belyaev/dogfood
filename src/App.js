@@ -11,6 +11,7 @@ import {AuthorizedRouting} from "./components/Routing/authorizedRouting";
 import {useNavigate} from "react-router";
 import {NotAuthorizedRouting} from "./components/Routing/notAuthorizedRouting";
 import {calcAllAmount} from "./storage/slices/basketSlice";
+import {changeModalShow} from "./storage/slices/modalSlice";
 
 export function App() {
     const navigate = useNavigate()
@@ -24,7 +25,7 @@ export function App() {
                 .then(() => dispatch(getProducts()))
             navigate("/")
         } else {
-            navigate('/not-authorized')
+            dispatch(changeModalShow(true))
         }
     }, [authorized])
 
@@ -37,7 +38,7 @@ export function App() {
                 <Modal/>
                 <Header/>
                     <main className='container'>
-                        {authorized? <AuthorizedRouting/> : <NotAuthorizedRouting/>}
+                        {authorized ? <AuthorizedRouting/> : <NotAuthorizedRouting/>}
                     </main>
                 <Footer/>
             </div>)

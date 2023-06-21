@@ -5,7 +5,6 @@ import {NotAuthorizedPage} from "../../pages/NotAuthorizedPage/notauthorizedpage
 export const NotAuthorizedRouting = () => {
     return (<>
         <Routes>
-            <Route path="/not-authorized" element={<NotAuthorizedPage/>}/>
             <Route path="*" element={<NotAuthorizedPage/>}/>
         </Routes>
     </>)

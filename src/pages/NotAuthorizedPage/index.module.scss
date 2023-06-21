@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.line {
+  font-size: 24px;
+  font-family: 'Nunito', serif;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px;
+  &__link {
+    color: #005484;
+    font-size: 26px;
+  }
+}
+
