@@ -6,7 +6,6 @@ import {likedByCurrentUser, productRating} from "../../utils/utils";
 const initialState = {
     products: [],
     favorites: [],
-    total: 0,
     loading: false
 }
 
