@@ -32,6 +32,7 @@ const basketSlice = createSlice({
                         state.basket.splice(i, 1)
                         calcAllAmountFunc(state)
                         }
+                    return
                     }
                 }
         },

@@ -3,28 +3,7 @@ import {useDispatch} from "react-redux";
 import {useForm} from "react-hook-form";
 
 import {changeModalChilderPointer} from "../../storage/slices/modalSlice";
-
-const emailRequirements = {
-    required: {
-        value: true,
-        message: 'Пожалуйста, укажите e-mail.'
-    },
-    pattern: {
-        value: /^([A-Za-z\d.]+)@[A-Za-z\d.]+\.([A-Za-z]+)$/,
-        message: "Похоже, вы ошиблись в e-mail."
-    }
-}
-
-const passwordRequirements = {
-    required: {
-        value: true,
-        message: 'Пожалуйста, задайте пароль.'
-    },
-    pattern: {
-        value: /^[A-Za-z\d]{8,}$/,
-        message: 'Пароль должен содержать не менее 8 символов и состоять из цифр и букв латинского алфавита.'
-    }
-}
+import {emailRequirements, passwordRequirements} from "../../constants/constants";
 
 export const FormFields = ({showEmailField = true, ...props}) => {
     const dispatch = useDispatch()

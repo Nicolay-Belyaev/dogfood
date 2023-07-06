@@ -1,17 +1,17 @@
 import React, {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux"
+import {useNavigate} from "react-router";
 
 import {getUser} from "./storage/slices/userSlice";
 import {getProducts} from "./storage/slices/cardsSlice";
+import {calcAllAmount} from "./storage/slices/basketSlice";
+import {changeModalShow} from "./storage/slices/modalSlice";
 
 import {Header} from "./components/Header/header";
 import {Footer} from "./components/Footer/footer";
 import {Modal} from "./components/Modal/modal";
 import {AuthorizedRouting} from "./components/Routing/authorizedRouting";
-import {useNavigate} from "react-router";
 import {NotAuthorizedRouting} from "./components/Routing/notAuthorizedRouting";
-import {calcAllAmount} from "./storage/slices/basketSlice";
-import {changeModalShow} from "./storage/slices/modalSlice";
 
 export function App() {
     const navigate = useNavigate()

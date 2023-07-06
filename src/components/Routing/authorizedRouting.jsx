@@ -6,7 +6,7 @@ import {ProductPage} from "../../pages/ProductPage/productpage";
 import {FavoritePage} from "../../pages/FavoritePage/favoritepage";
 import {BasketPage} from "../../pages/BasketPage/basketPage";
 import {UserPage} from "../../pages/UserPage/userPage";
-import {NotAuthorizedPage} from "../../pages/NotAuthorizedPage/notauthorizedpage";
+
 
 export const AuthorizedRouting = () => {
     return (<>
